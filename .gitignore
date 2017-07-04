@@ -1,0 +1,8 @@
+Library/
+Temp/
+App/
+Assets/MyPlugins
+Assets/ProCore
+obj/Debug
+.DS_Store
+.vscode
