@@ -2,6 +2,7 @@ Library/
 Temp/
 App/
 Assets/MyPlugins
+Assets/MyPlugins.meta
 Assets/ProCore
 Assets/ProCore.meta
 obj/Debug
