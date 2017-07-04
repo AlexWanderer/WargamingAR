@@ -108,57 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &634481903
-GameObject:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 634481905}
-  - component: {fileID: 634481904}
-  m_Layer: 0
-  m_Name: Progroups2_Groups_Container_Object
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &634481904
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 634481903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34619e0f20e4a43fa8120864b07d987d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneGroups:
-  - name: TESTGROUP
-    objects: []
-    frozen: 0
-    hidden: 0
-  - name: Ground
-    objects:
-    - {fileID: 0}
-    - {fileID: 1413067576}
-    frozen: 0
-    hidden: 0
---- !u!4 &634481905
-Transform:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 634481903}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1413067576
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +223,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1431028154
 MonoBehaviour:
@@ -287,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328205561f429144ab7d2f1de310a61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setupPlane: {fileID: 1747816382487692, guid: 33fb1badfd9a51e4399c798b68a5a46c, type: 2}
+  setupPlane: {fileID: 1332144642235760, guid: b9b654240ec190f4fb714dbb31130b6e, type: 2}
 --- !u!114 &1431028155
 MonoBehaviour:
   m_ObjectHideFlags: 0

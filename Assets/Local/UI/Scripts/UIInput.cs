@@ -19,7 +19,7 @@ namespace WAR.UI {
 				if (instance) { return instance; }
 				instance = FindObjectOfType<UIInput> ();
 				if (instance) { /*TODO add init sequence if necessary*/return instance; }
-				Debug.LogError("No WARBoardControl instance was found!");
+				Debug.LogError("No WARControlBoard instance was found!");
 				return null;
 			}
 		}
