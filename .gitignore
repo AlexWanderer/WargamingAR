@@ -6,5 +6,6 @@ Assets/MyPlugins.meta
 Assets/ProCore
 Assets/ProCore.meta
 obj/Debug
+debug.log
 .DS_Store
 .vscode
