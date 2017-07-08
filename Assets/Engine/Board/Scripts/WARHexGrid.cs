@@ -61,7 +61,7 @@ namespace WAR.Board {
 					
 					// and scale the grid based on our global scale factor
 					hex.transform.localScale = globalGridScale * hex.transform.localScale;
-					WARActorCell cell = hex.GetComponent<WARActorCell>();
+					WARActorCell cell = hex.GetComponent<WARActorCell>().Init();
 					if (cell){
 						// make sure we get a unique id next time
 						cell.id = id++;
@@ -78,7 +78,6 @@ namespace WAR.Board {
 		public void AddObjectsToCell(int cellId, List<WARGridObject> objects) {
 			// find the designated cell
 			//var cell = cells.Where(c => c.id == cellId) as WARActorCell;
-			
 			WARActorCell cell = null;
 			foreach (var c in cells) {
 				if (c.id == cellId) {
@@ -90,12 +89,16 @@ namespace WAR.Board {
 			// if we found the cell
 			if (cell != null) {
 				// add the given objects 
-				cell.objects = objects[0]; 
+				foreach (var obj in objects){
+					print("adding objects to cell: " + objects.ToString());
+					cell.objects.Add(obj);
+				}
 			}
 			// we were told to add objects to a cell we couldn't find
 			else {
 				Debug.LogError("Could not add objects to cell with id " + cellId);
 			}
 		}
+		
 	}
 }
