@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using WAR.UI;
+using UniRx;
 
 namespace WAR.Board {
 	public class WARControlBoard : Manager<WARControlBoard> {
@@ -13,12 +14,10 @@ namespace WAR.Board {
 		private GameObject table;
 		public GameObject hexSlot;
 		
-		
 		public void Start () {
 			// initialize the board at the appropriate time
 			StartCoroutine(WaitForUIInput());
 		}
-		
 		IEnumerator WaitForUIInput() {
 			while (UIInput.Instance == null) yield return null;
 			print("adding init board");

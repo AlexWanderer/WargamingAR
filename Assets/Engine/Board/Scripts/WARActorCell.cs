@@ -20,7 +20,6 @@ namespace WAR.Board {
 		}
 		
 		void PlaceObjectOnCell(CollectionAddEvent<WARGridObject> gridObject) {
-			print("placing object on cell: " + gridObject.Value.name);
 			gridObject.Value.transform.position = transform.position;
 		}
 	

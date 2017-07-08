@@ -90,7 +90,6 @@ namespace WAR.Board {
 			if (cell != null) {
 				// add the given objects 
 				foreach (var obj in objects){
-					print("adding objects to cell: " + objects.ToString());
 					cell.objects.Add(obj);
 				}
 			}
