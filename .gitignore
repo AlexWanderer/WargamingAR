@@ -1,9 +1,15 @@
 Library/
 Temp/
+Obj/
 App/
 App.exe
 App_Data/
 obj/Debug
 debug.log
-.DS_Store
+*.DS_Store
+*.csproj
+*.sln
+*.user
+*.userprefs
 .vscode
+.vs/

@@ -6,10 +6,10 @@ using WAR;
 using WAR.Utils;
 
 namespace WAR.Ships {
-	public class WARShipLibrary : WARLib<WARShipLibrary> {		
+	public class WARLibraryShip : WARLibrary<WARLibraryShip> {		
 		public static GameObject[] ships {
 			get {
-				return WARShipLibrary.Instance.assets.ToArray();
+				return WARLibraryShip.Instance.assets.ToArray();
 			}	
 		}
 	}

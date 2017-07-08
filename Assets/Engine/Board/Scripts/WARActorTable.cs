@@ -37,7 +37,7 @@ namespace WAR.Board {
 			grid.CreateGrid();
 			
 			// add a ship to play with
-			var ship = GameObject.Instantiate(WARShipLibrary.ships[0], gameObject.transform).GetComponent<WARShip>() as WARGridObject;
+			var ship = GameObject.Instantiate(WARLibraryShip.ships[0], gameObject.transform).GetComponent<WARShip>() as WARGridObject;
 			grid.AddObjectsToCell(0, new List<WARGridObject> {ship});
 			
 			// we're done here
