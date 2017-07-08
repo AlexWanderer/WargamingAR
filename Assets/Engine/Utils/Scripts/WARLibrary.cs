@@ -12,9 +12,9 @@ using UnityEditor;
 
 namespace WAR.Utils {
 	public abstract class WARLibrary<T> : Manager<WARLibrary<T>> {
-		[Required][SerializeField] string filter;
-		
-		[AssetList(CustomFilterMethod = "Filter")]
+		protected string filter;
+		 
+		[AssetList(CustomFilterMethod = "Filter", AutoPopulate=true)]
 		[InfoBox("asset pool we can load from")]
 		public List<GameObject> assets = new List<GameObject>();
 		
