@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D62E2A92-CC26-EB75-5E47-E4A1E1E9A283}</ProjectGuid>
+    <ProjectGuid>{FE1A49ED-F985-D4CF-5BE0-4C22E6CC5CD6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_2;UNITY_5_6;UNITY_5;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ODIN_INSPECTOR</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_2;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ODIN_INSPECTOR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -53,6 +53,18 @@
      <Compile Include="Assets\Plugins\APlus Assets Explorer\Scripts\Reflection\ShaderUtils.cs" />
      <Compile Include="Assets\Plugins\APlus Assets Explorer\Scripts\Reflection\TextureUtillity.cs" />
      <Compile Include="Assets\Plugins\APlus Assets Explorer\Scripts\Reflection\Webview.cs" />
+     <Compile Include="Assets\Plugins\DevConsole\Console.cs" />
+     <Compile Include="Assets\Plugins\DevConsole\Parsers.cs" />
+     <Compile Include="Assets\Plugins\LINQtoGameObject\Scripts\GameObjectExtensions.Enumerable.cs" />
+     <Compile Include="Assets\Plugins\LINQtoGameObject\Scripts\GameObjectExtensions.Operate.cs" />
+     <Compile Include="Assets\Plugins\LINQtoGameObject\Scripts\GameObjectExtensions.Traverse.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\Classes\pg_Constant.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\Classes\pg_Enum.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\Classes\pg_IconUtility.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\Classes\pg_IgnoreSnapAttribute.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\Classes\pg_SceneMeshRender.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\Classes\pg_Util.cs" />
+     <Compile Include="Assets\Plugins\ProGrids\MonoBehaviour\pg_IgnoreSnap.cs" />
      <Compile Include="Assets\Plugins\QHierarchy\Scripts\QObjectList.cs" />
      <Compile Include="Assets\Plugins\Sirenix\Demos\Odin Inspector\Scripts\Attribute Examples\AssetListExamples.cs" />
      <Compile Include="Assets\Plugins\Sirenix\Demos\Odin Inspector\Scripts\Attribute Examples\BoxGroupExamples.cs" />
@@ -159,69 +171,79 @@
      <Compile Include="Assets\Plugins\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunnerCallbackList.cs" />
      <Compile Include="Assets\Plugins\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunnerConfigurator.cs" />
      <Compile Include="Assets\Plugins\UnityTestTools\IntegrationTestsFramework\TestingAssets\CallTesting.cs" />
-     <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
-     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\AR3DOFCameraManager.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\ARPlaneAnchorGameObject.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\DontDestroyOnLoad.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARAnchor.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARCamera.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARErrorCode.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARFrame.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARHitTestResult.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARHitTestResultType.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARLightEstimate.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARPlaneAnchor.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARPlaneAnchorAlignment.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARPoint.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARRect.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARSize.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARTextureHandles.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARTrackingQuality.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARTrackingState.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARTrackingStateReason.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\UnityARSessionNativeInterface.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARCameraManager.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARCameraNearFar.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARVideo.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\Utility\UnityARAnchorManager.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\Utility\UnityARMatrixOps.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\Utility\UnityARUtility.cs" />
+     <None Include="Assets\Plugins\ProGrids\Shader\pg_GridShader.shader" />
      <None Include="Assets\Plugins\UnityTestTools\LICENSE.txt" />
-     <None Include="Assets\ProCore\QuickEdit\About\pc_AboutEntry_QuickEdit.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_SelectionPicker.shader" />
-     <None Include="Assets\ProCore\ProBuilder\About\changelog.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseVertexColor.shader" />
-     <None Include="Assets\ProCore\ProGroups\About\changelog.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\namespace.txt" />
+     <None Include="Assets\Remote\SpaceJourney\Plugins\Glitch\Shader\AnalogGlitch.shader" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\SI Changes.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\log.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_FaceHighlight.shader" />
+     <None Include="Assets\Remote\SpaceJourney\Plugins\Glitch\Shader\DigitalGlitch.shader" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\case.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\do.txt" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.xml" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\UnlitSolidColor.shader" />
-     <None Include="Assets\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_ReferenceUnlit.shader" />
-     <None Include="Assets\ProCore\QuickEdit\About\changelog.txt" />
+     <None Include="Assets\Plugins\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\_readme.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\enum.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\else.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\base.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseTextureBlend.shader" />
+     <None Include="Assets\Plugins\LINQtoGameObject\README.txt" />
      <None Include="Assets\Plugins\Sirenix\Readme.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_StandardVertexColor.shader" />
+     <None Include="Assets\Remote\SpaceJourney\Plugins\ColorSuite\Shader\ColorSuite.shader" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\get.txt" />
-     <None Include="Assets\ProCore\QuickEdit\Shader\qe_FaceShader.shader" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexPicker.shader" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_HideVertices.shader" />
-     <None Include="Assets\ProCore\ProGroups\About\pc_AboutEntry_ProGroups.txt" />
+     <None Include="Assets\Remote\SpaceJourney\_InputManager\InoutManagerSettings.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\EditorResources\Fonts\SourceCodePro-Legal.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\if.txt" />
-     <None Include="Assets\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_FacePicker.shader" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\struct.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\for.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\catch.txt" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.xml" />
      <None Include="Assets\Plugins\UnityTestTools\changelog.txt" />
-     <None Include="Assets\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\class.txt" />
-     <None Include="Assets\ProCore\ProBuilder\About\pc_AboutEntry_ProBuilder.txt" />
+     <None Include="Assets\Remote\SpaceJourney\Plugins\SkyboxShaders\Skybox Shaders\Horizontal Skybox.shader" />
+     <None Include="Assets\Engine\UI\Shaders\MobileARShadow.shader" />
+     <None Include="Assets\Plugins\Mirza Beig\README - Advanced Particle Scaler.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\foreach.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
+     <None Include="Assets\Remote\Zololgo\Sci-fi Hologram Shader\Shaders\SciFiHologramShader.shader" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\interface.txt" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
-     <None Include="Assets\ProCore\ProGrids\About\changelog.txt" />
+     <None Include="Assets\Plugins\ProGrids\About\changelog.txt" />
+     <None Include="Assets\Engine\UI\Shaders\YUVShader.shader" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\switch.txt" />
-     <None Include="Assets\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
-     <None Include="Assets\ProCore\ProBuilder\readme.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\finally.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\try.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\while.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\nn.txt" />
      <None Include="Assets\Plugins\ScriptInspector3\Editor\CodeSnippets\set.txt" />
-     <None Include="Assets\ProCore\QuickEdit\Shader\qe_VertexShader.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -243,41 +265,29 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+ <Reference Include="CommandSystem">
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/DevConsole/CommandSystem.dll</HintPath>
+ </Reference>
  <Reference Include="MonitorComponents">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Monitor Components/MonitorComponents.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Monitor Components/MonitorComponents.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.OdinInspector.Attributes">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Sirenix/Assemblies/Sirenix.OdinInspector.Attributes.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Sirenix/Assemblies/Sirenix.OdinInspector.Attributes.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.OdinInspector.Editor">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Sirenix/Assemblies/Sirenix.OdinInspector.Editor.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Sirenix/Assemblies/Sirenix.OdinInspector.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.Serialization.Config">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Sirenix/Assemblies/Sirenix.Serialization.Config.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Sirenix/Assemblies/Sirenix.Serialization.Config.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.Serialization">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Sirenix/Assemblies/Sirenix.Serialization.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Sirenix/Assemblies/Sirenix.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.Utilities">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Sirenix/Assemblies/Sirenix.Utilities.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Sirenix/Assemblies/Sirenix.Utilities.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.Utilities.Editor">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/Plugins/Sirenix/Assemblies/Sirenix.Utilities.Editor.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderCore-Unity5">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
- </Reference>
- <Reference Include="KdTreeLib">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
- </Reference>
- <Reference Include="pb_Stl">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
- </Reference>
- <Reference Include="Poly2Tri">
- <HintPath>C:/Users/jaacohn/Documents/NewBase/Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
+ <HintPath>C:/Users/jaacohn/Documents/WargamingAR/Assets/Plugins/Sirenix/Assemblies/Sirenix.Utilities.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

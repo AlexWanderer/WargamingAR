@@ -1,12 +1,8 @@
 Library/
 Temp/
 App/
-Assets/Plugins/APlus\ Assets\ Explorer
-Assets/Plugins/APlus\ Assets\ Explorer.meta
-Assets/MyPlugins
-Assets/MyPlugins.meta
-Assets/ProCore
-Assets/ProCore.meta
+App.exe
+App_Data/
 obj/Debug
 debug.log
 .DS_Store

@@ -338,7 +338,7 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
-  cameraUsageDescription: AR BABY
+  cameraUsageDescription: we need it for AR reasons
   locationUsageDescription: 
   microphoneUsageDescription: 
   switchNetLibKey: 
@@ -579,6 +579,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
     1: ODIN_INSPECTOR
+    4: ODIN_INSPECTOR
   platformArchitecture:
     iOS: 2
   scriptingBackend:
@@ -696,8 +697,8 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
     Analytics: 0
-    Build: 0
-    Collab: 0
+    Build: 1
+    Collab: 1
     ErrorHub: 0
     Game_Performance: 0
     Hub: 0
@@ -706,8 +707,8 @@ PlayerSettings:
     Unity_Ads: 0
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 000f0cbf-b2a9-4f6d-9ef2-f3291440efa7
-  projectName: NewBase
-  organizationId: jason-cohen
+  cloudProjectId: 21c9d61b-c57d-44f4-b7fb-7bcd33999e0f
+  projectName: WargamingAR
+  organizationId: astralgaming
   cloudEnabled: 0
   enableNewInputSystem: 0
