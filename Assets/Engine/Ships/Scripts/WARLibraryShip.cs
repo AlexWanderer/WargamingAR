@@ -8,8 +8,10 @@ using Sirenix.OdinInspector;
 
 namespace WAR.Ships {
 	public class WARLibraryShip : WARLibrary<WARLibraryShip> {		
-		string filter = "l: warship";
 		
+		public WARLibraryShip() {
+			filter = "l: warship";
+		}
 		
 		public static GameObject[] ships {
 			get {
