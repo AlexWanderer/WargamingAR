@@ -62,12 +62,8 @@ namespace WAR {
 						// if we were able to instantiate an object from the manager, it already exists
 						if (go != null) continue;
 							
-						
 						go = new GameObject(type.Name);
 						go.AddComponent(type);
-						
-						// the filepath for the prefab
-						var filePath = Application.dataPath + "/Resources/Managers/" + type.Name + ".prefab";	
 						
 						PrefabUtility.CreatePrefab("Assets/Resources/Managers/" + type.Name + ".prefab", go.gameObject);
 						GameObject.DestroyImmediate(go);
