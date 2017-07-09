@@ -28,6 +28,7 @@ namespace WAR.UI {
 			UIInput.Instance.onBoardInit(plane);
 		}
 		
+		
 		void Awake() {
 			#if UNITY_EDITOR || UNITY_STANDALONE_WIN
 			GameObject.Instantiate(desktopCamera);
@@ -36,7 +37,7 @@ namespace WAR.UI {
 			Camera cam = GameObject.Instantiate(mobileCamera)
 								   .GetComponent<Camera>();
 			GameObject.Instantiate(mobileInputControl);
-			GetComponent<UnityARCameraManager>().SetCamera(cam);
+			gameObject.AddComponent<UnityARCameraManager>().SetCamera(cam);
 			#endif
 		}
 	}
