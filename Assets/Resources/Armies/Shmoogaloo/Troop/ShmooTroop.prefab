@@ -171,8 +171,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4442153901002080}
+  - component: {fileID: 114619833002364076}
   m_Layer: 0
-  m_Name: Ship_3
+  m_Name: ShmooTroop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -564,6 +565,17 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: ba009f03bbe6cb54298666b0d3b99f5b, type: 3}
+--- !u!114 &114619833002364076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549523744643522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7177bfe49db8c7345a43d639deb6f458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198053891765983028
 ParticleSystem:
   m_ObjectHideFlags: 1
