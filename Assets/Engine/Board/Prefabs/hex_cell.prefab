@@ -192,3 +192,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  highlightedMaterial: {fileID: 2100000, guid: 4df0ec14e2b9a61418c7fc67a78b8cff, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: bfcb6e0990aafd046b7c301c420c81b3, type: 2}

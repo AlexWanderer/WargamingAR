@@ -21,6 +21,12 @@ namespace WAR.Game {
 			UIInput.TouchObservable.Subscribe(handleTouch);
 		}
 		
+		void Clear() {
+			while (Selection.Count > 0) {
+				Selection.RemoveAt(0);
+			}
+		}
+		
 		void handleTouch(Vector3 touchObservable) {
 			// cast a ray from the point we touched out to the board
 			Ray ray = Camera.main.ScreenPointToRay(touchObservable);
@@ -29,7 +35,7 @@ namespace WAR.Game {
 			// if we didn't hit something the user means to 
 			if (hits.Length == 0) {
 			// clear the current selection
-				Selection.Clear();
+				Clear();
 			} 
 			// otherwise we hit something that could have selectable objects
 			else {
@@ -39,9 +45,8 @@ namespace WAR.Game {
 				
 				// if the target is a cell with contents
 				if (cell != null && cell.objects.Count > 0) {
-					// use the contents as the selection
-					Selection.Clear();
-					Debug.Log(cell.objects.Count);
+					// use the contents as the selection using remove so that subscribers can listen
+					Clear();
 					// add each object in the cell to the selection
 					foreach (var obj in cell.objects) {
 						Selection.Add(obj);
