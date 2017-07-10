@@ -16,7 +16,7 @@ namespace WAR.Board {
 		// the objects in the cell
 		private WARGridObject entry;
 		public ReactiveCollection<WARGridObject> objects = new ReactiveCollection<WARGridObject>();
-		public ReactiveProperty<bool> highlighted = new ReactiveProperty<bool>(false);
+		public BoolReactiveProperty highlighted = new BoolReactiveProperty(false);
 		
 		Color defaultColor;
 		

@@ -17,7 +17,7 @@ namespace WAR.Board {
 			this.hexPrefab = hexPrefab;
 		}
 		
-		public override void CreateGrid () {
+		public override void createGrid () {
 			// position and rotate our table actor container to match plane.center and rotation				
 			transform.position = plane.center;
 			
@@ -77,7 +77,7 @@ namespace WAR.Board {
 			transform.rotation = plane.rotation;	
 		}
 		
-		public override void AddObjectsToCell(int cellId, List<WARGridObject> objects) {
+		public override void addObjectsToCell(int cellId, List<WARGridObject> objects) {
 			// find the designated cell
 			//var cell = cells.Where(c => c.id == cellId) as WARActorCell;
 			WARActorCell cell = null;

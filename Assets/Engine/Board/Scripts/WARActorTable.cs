@@ -34,11 +34,11 @@ namespace WAR.Board {
 			}
 			
 			// draw the grid
-			grid.CreateGrid();
+			grid.createGrid();
 			
 			// add a ship to play with
 			var ship = GameObject.Instantiate(WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop"), gameObject.transform).GetComponent<WARUnit>() as WARGridObject;
-			grid.AddObjectsToCell(0,new List<WARGridObject>{ship});
+			grid.addObjectsToCell(0,new List<WARGridObject>{ship});
 			
 			// we're done here
 			return gameObject;

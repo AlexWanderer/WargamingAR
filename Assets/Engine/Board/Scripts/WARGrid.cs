@@ -9,22 +9,24 @@ using WAR.Game;
 namespace WAR.Board {
 	public abstract class WARGrid : MonoBehaviour {
 		// display the grid on the view 
-		abstract public void CreateGrid();
+		abstract public void createGrid();
 		
 		// add objects to a specific grid
-		abstract public void AddObjectsToCell(int cellId, List<WARGridObject> objects);
+		abstract public void addObjectsToCell(int cellId, List<WARGridObject> objects);
 		
 		// the list of cells in the grid - index is list is assumed to be the id
 		protected List<WARActorCell> cells = new List<WARActorCell>();
 		
-		// our subscription object for the current selection
-		private IDisposable addSubscription;
-		private IDisposable removeSubscription;
+		// collect all of our disposables together so we can disable them as a group
+		private CompositeDisposable disposables = new CompositeDisposable();
 		
 		public void Start() {
 			// when an item is selected
-			addSubscription = WARControlSelection.Selection.ObserveAdd().Subscribe(selectionAdded);
-			removeSubscription = WARControlSelection.Selection.ObserveRemove().Subscribe(selectionRemoved);
+			WARControlSelection.Selection.ObserveAdd().Subscribe(selectionAdded).AddTo(disposables);
+			// when an item is remove from the selection
+			WARControlSelection.Selection.ObserveRemove().Subscribe(selectionRemoved).AddTo(disposables);
+			// a move order is issued when there is a clicked with a non-zero selection
+			UIInput.TouchObservable.Where(_ => WARControlSelection.Selection.Count > 0).Subscribe(moveObject);
 		}
 		
 		// locate the cell under an object
@@ -46,29 +48,50 @@ namespace WAR.Board {
 			// for each cell under the object
 			foreach (var cellId in findCellsUnderObject(gridObject.Value)) {
 				// set the cell to be highlighted
-				cells[cellId].highlighted.SetValueAndForceNotify(true);
+				cells[cellId].highlighted.Value = true;
 			}
 		}
 		
 		// when an object is removed from the selection
 		public void selectionRemoved(CollectionRemoveEvent<WARGridObject> gridObject) {
+			print("removed");
 			// for each cell under the object
 			foreach (var cellId in findCellsUnderObject(gridObject.Value)) {
 				// set the cell to be highlighted
-				cells[cellId].highlighted.SetValueAndForceNotify(false);
+				cells[cellId].highlighted.Value = false;
 			}
+		}
+		
+		// when a move order is issued
+		public void moveObject(Vector3 pos) {
+			// find the cell underneath the point we clicked
+			RaycastHit hit;
+			int layerMask = 1 << (int)Layers.TableTile;
+			
+			// if there is an object under the vector
+			if (Physics.Raycast(ray: Camera.main.ScreenPointToRay(pos), hitInfo: out hit, maxDistance: 5, layerMask: layerMask)) {
+				// the id of the cell we clicked on 
+				var id = hit.collider.GetComponent<WARActorCell>().id;
+				// we clicked on cell so move the current select to the cell
+				var list = new List<WARGridObject>();
+				foreach (var selected in WARControlSelection.Selection) {
+					list.Add(selected);
+				}
+				
+				// move the selection to the right cell
+				moveObjectsToCell(id, list);	 			
+			}
+		}
+		
+		public void moveObjectsToCell(int cellId, List<WARGridObject> objects ) {
+			// remove each object from the original cell
+			
 		}
 		
 		// when the object is destroyed
 		public void OnDestroy() {
 			// make sure to clean up any subscriptions
-			foreach (var subscription in new List<IDisposable>{addSubscription, removeSubscription}) {
-				// if we have an add subscription and it hasn't been disposed yet
-				if (subscription != null) {
-				// stop listening for changes to the selection
-					subscription.Dispose();
-				}	
-			}
+			disposables.Dispose();
 		}
 		
 	}

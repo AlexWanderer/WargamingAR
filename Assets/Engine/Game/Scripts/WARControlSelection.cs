@@ -34,7 +34,7 @@ namespace WAR.Game {
 			
 			// if we didn't hit something the user means to 
 			if (hits.Length == 0) {
-			// clear the current selection
+				// clear the current selection
 				Clear();
 			} 
 			// otherwise we hit something that could have selectable objects
