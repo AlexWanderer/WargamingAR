@@ -17,7 +17,7 @@ namespace WAR.Board {
 		
 		public float globalGridScale = 0.03f;
 		
-		private IWARGrid grid;
+		private WARGrid grid;
 		
 		public GameObject initialize(UIPlane plane, GameObject hexSlot, GRID_TYPE cellType){
 			switch(cellType) {
@@ -26,7 +26,7 @@ namespace WAR.Board {
 				// fill our plane extent with hex slots
 				WARHexGrid hexGrid = gameObject.AddComponent<WARHexGrid>() as WARHexGrid;
 				hexGrid.initialize(plane,hexSlot);
-				grid = hexGrid as IWARGrid;
+				grid = hexGrid;
 				break;
 			default:
 				print("could not instantiate cell with type " + cellType);

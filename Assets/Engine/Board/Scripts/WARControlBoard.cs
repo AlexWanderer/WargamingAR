@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using WAR.UI;
 using UniRx;
+using WAR.UI;
+using WAR.Game;
 
 namespace WAR.Board {
 	public class WARControlBoard : Manager<WARControlBoard> {
@@ -17,6 +18,7 @@ namespace WAR.Board {
 			// initialize the board at the appropriate time
 			StartCoroutine(WaitForUIInput());
 		}
+		
 		IEnumerator WaitForUIInput() {
 			while (UIInput.Instance == null) yield return null;
 			print("adding init board");
@@ -28,6 +30,8 @@ namespace WAR.Board {
 			// remove an existing table if there is one
 			if (table != null) {
 				GameObject.Destroy(table);
+				// clear the selection
+				WARControlSelection.Selection.Clear();
 			}
 			
 			// create a new object
@@ -43,6 +47,11 @@ namespace WAR.Board {
 			WARActorTable table = go.AddComponent<WARActorTable>() as WARActorTable;
 			// initialize and return our table container
 			return table.initialize(plane, hexSlot, GRID_TYPE.hex);
+		}
+		
+		// when an object is removed from the selection
+		private void selectionRemoved(CollectionRemoveEvent<WARGridObject> removedObject) {
+			
 		}
 	}
 }            
