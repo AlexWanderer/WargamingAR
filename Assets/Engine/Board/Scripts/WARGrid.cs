@@ -86,11 +86,12 @@ namespace WAR.Board {
 		}
 		
 		public void moveObjectsToCell(int cellId, List<WARGridObject> objects ) {
+			int id = findCellsUnderObject(objects[0])[0];
 			// remove objects from the original cell
-			removeObjectsFromCell(cellId, objects);
+			removeObjectsFromCell(id, objects);
 			// TODO, cleanup thix findCellsUnderObject call, maybe just pass source cellId in
 			// use the first object we are trying to move to find the cell id of the highlighted cell
-			cells[findCellsUnderObject(objects[0])[0]].highlighted.Value = false;
+			cells[id].highlighted.Value = false;
 			// add objects to the target cell and highlight it
 			addObjectsToCell(cellId, objects);
 			cells[cellId].highlighted.Value = true;
