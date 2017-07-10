@@ -11,8 +11,10 @@ namespace WAR.Board {
 		// display the grid on the view 
 		abstract public void createGrid();
 		
-		// add objects to a specific grid
+		// add objects to a specific cellId
 		abstract public void addObjectsToCell(int cellId, List<WARGridObject> objects);
+		// remove objects from a specific cellId
+		abstract public void removeObjectsFromCell(int cellId, List<WARGridObject> objects);
 		
 		// the list of cells in the grid - index is list is assumed to be the id
 		protected List<WARActorCell> cells = new List<WARActorCell>();
@@ -84,8 +86,14 @@ namespace WAR.Board {
 		}
 		
 		public void moveObjectsToCell(int cellId, List<WARGridObject> objects ) {
-			// remove each object from the original cell
-			
+			// remove objects from the original cell
+			removeObjectsFromCell(cellId, objects);
+			// TODO, cleanup thix findCellsUnderObject call, maybe just pass source cellId in
+			// use the first object we are trying to move to find the cell id of the highlighted cell
+			cells[findCellsUnderObject(objects[0])[0]].highlighted.Value = false;
+			// add objects to the target cell and highlight it
+			addObjectsToCell(cellId, objects);
+			cells[cellId].highlighted.Value = true;
 		}
 		
 		// when the object is destroyed

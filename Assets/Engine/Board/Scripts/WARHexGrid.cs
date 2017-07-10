@@ -77,9 +77,10 @@ namespace WAR.Board {
 			transform.rotation = plane.rotation;	
 		}
 		
+		// TODO, cleanup these functions, they are verbose..
+		
 		public override void addObjectsToCell(int cellId, List<WARGridObject> objects) {
 			// find the designated cell
-			//var cell = cells.Where(c => c.id == cellId) as WARActorCell;
 			WARActorCell cell = null;
 			foreach (var c in cells) {
 				if (c.id == cellId) {
@@ -98,6 +99,28 @@ namespace WAR.Board {
 			// we were told to add objects to a cell we couldn't find
 			else {
 				Debug.LogError("Could not add objects to cell with id " + cellId);
+			}
+		}
+		public override void removeObjectsFromCell(int cellId, List<WARGridObject> objects) {
+			// find the designated cell
+			WARActorCell cell = null;
+			foreach (var c in cells) {
+				if (c.id == cellId) {
+					cell = c;
+					break;
+				}
+			}
+			
+			// if we found the cell
+			if (cell != null) {
+				// remove the given objects 
+				foreach (var obj in objects){
+					cell.objects.Remove(obj);
+				}
+			}
+			// we were told to add objects to a cell we couldn't find
+			else {
+				Debug.LogError("Could not remove objects from cell with id " + cellId);
 			}
 		}
 		
