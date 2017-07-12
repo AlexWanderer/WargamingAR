@@ -1,10 +1,18 @@
 fileFormatVersion: 2
 guid: a589417b7089ede4ba442907a577f571
-timeCreated: 1499153038
+timeCreated: 1499535220
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mobileCamera: {fileID: 1055320668992482, guid: 64a4a5d5b344243d2adbe64292a618a4,
+      type: 2}
+  - desktopCamera: {fileID: 1718846444953024, guid: 36096ed69f6d24beda5630e54b9bad4b,
+      type: 2}
+  - desktopInputControl: {fileID: 1731082086240208, guid: eb144e430ebb041ba907d76fd21fb8ac,
+      type: 2}
+  - mobileInputControl: {fileID: 1898632714849716, guid: 7be14fc3e2405427bb830f75f34f8963,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

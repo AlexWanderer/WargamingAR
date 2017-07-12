@@ -4,7 +4,7 @@ using UnityEngine;
 
 using WAR.Board;
 
-namespace WAR.Ships {
-	public class WARShip : WARGridObject {
+namespace WAR.Units {
+	public class WARUnit : WARGridObject {
 	}
 }

@@ -5,11 +5,10 @@ using System.Linq;
 using WAR.UI;
 
 namespace WAR.Board {
-	public class WARHexGrid : MonoBehaviour, IWARGrid {
+	public class WARHexGrid : WARGrid {
 		
 		private UIPlane plane;
 		private GameObject hexPrefab;
-		private List<WARActorCell> cells = new List<WARActorCell>();
 		
 		private float globalGridScale = 0.01f;
 		
@@ -18,7 +17,7 @@ namespace WAR.Board {
 			this.hexPrefab = hexPrefab;
 		}
 		
-		public void CreateGrid () {
+		public override void createGrid () {
 			// position and rotate our table actor container to match plane.center and rotation				
 			transform.position = plane.center;
 			
@@ -64,9 +63,12 @@ namespace WAR.Board {
 					WARActorCell cell = hex.GetComponent<WARActorCell>().Init();
 					if (cell){
 						// make sure we get a unique id next time
-						cell.id = id++;
+						cell.id = id;
 						// and add it to the list
 						cells.Add(cell);
+						
+						// increment the id counter
+						id++;
 					}
 				}
 			}
@@ -75,9 +77,10 @@ namespace WAR.Board {
 			transform.rotation = plane.rotation;	
 		}
 		
-		public void AddObjectsToCell(int cellId, List<WARGridObject> objects) {
+		// TODO, cleanup these functions, they are verbose..
+		
+		public override void addObjectsToCell(int cellId, List<WARGridObject> objects) {
 			// find the designated cell
-			//var cell = cells.Where(c => c.id == cellId) as WARActorCell;
 			WARActorCell cell = null;
 			foreach (var c in cells) {
 				if (c.id == cellId) {
@@ -90,13 +93,34 @@ namespace WAR.Board {
 			if (cell != null) {
 				// add the given objects 
 				foreach (var obj in objects){
-					print("adding objects to cell: " + objects.ToString());
 					cell.objects.Add(obj);
 				}
 			}
 			// we were told to add objects to a cell we couldn't find
 			else {
 				Debug.LogError("Could not add objects to cell with id " + cellId);
+			}
+		}
+		public override void removeObjectsFromCell(int cellId, List<WARGridObject> objects) {
+			// find the designated cell
+			WARActorCell cell = null;
+			foreach (var c in cells) {
+				if (c.id == cellId) {
+					cell = c;
+					break;
+				}
+			}
+			
+			// if we found the cell
+			if (cell != null) {
+				// remove the given objects 
+				foreach (var obj in objects){
+					cell.objects.Remove(obj);
+				}
+			}
+			// we were told to add objects to a cell we couldn't find
+			else {
+				Debug.LogError("Could not remove objects from cell with id " + cellId);
 			}
 		}
 		

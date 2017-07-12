@@ -2,17 +2,17 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using UniRx;
 using WAR.UI;
+using WAR.Game;
 
 namespace WAR.Board {
 	public class WARControlBoard : Manager<WARControlBoard> {
 		// the instance of the table actor managing the board
 		private GameObject table;
 		public GameObject hexSlot;
-		
 		
 		public void Start () {
 			// initialize the board at the appropriate time
@@ -30,6 +30,8 @@ namespace WAR.Board {
 			// remove an existing table if there is one
 			if (table != null) {
 				GameObject.Destroy(table);
+				// clear the selection
+				WARControlSelection.Selection.Clear();
 			}
 			
 			// create a new object
@@ -45,6 +47,11 @@ namespace WAR.Board {
 			WARActorTable table = go.AddComponent<WARActorTable>() as WARActorTable;
 			// initialize and return our table container
 			return table.initialize(plane, hexSlot, GRID_TYPE.hex);
+		}
+		
+		// when an object is removed from the selection
+		private void selectionRemoved(CollectionRemoveEvent<WARGridObject> removedObject) {
+			
 		}
 	}
 }            

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WAR.UI;
-using WAR.Ships;
-using WAR.Utils;
+using WAR.Units;
+using WAR.Tools;
 
 namespace WAR.Board {
 
@@ -17,7 +17,7 @@ namespace WAR.Board {
 		
 		public float globalGridScale = 0.03f;
 		
-		private IWARGrid grid;
+		private WARGrid grid;
 		
 		public GameObject initialize(UIPlane plane, GameObject hexSlot, GRID_TYPE cellType){
 			switch(cellType) {
@@ -26,7 +26,7 @@ namespace WAR.Board {
 				// fill our plane extent with hex slots
 				WARHexGrid hexGrid = gameObject.AddComponent<WARHexGrid>() as WARHexGrid;
 				hexGrid.initialize(plane,hexSlot);
-				grid = hexGrid as IWARGrid;
+				grid = hexGrid;
 				break;
 			default:
 				print("could not instantiate cell with type " + cellType);
@@ -34,12 +34,11 @@ namespace WAR.Board {
 			}
 			
 			// draw the grid
-			grid.CreateGrid();
+			grid.createGrid();
 			
 			// add a ship to play with
-			print("A");
-			var ship = GameObject.Instantiate(WARLibraryShip.ships[0], gameObject.transform).GetComponent<WARShip>() as WARGridObject;
-			grid.AddObjectsToCell(0,new List<WARGridObject>{ship});
+			var ship = GameObject.Instantiate(WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop"), gameObject.transform).GetComponent<WARUnit>() as WARGridObject;
+			grid.addObjectsToCell(0,new List<WARGridObject>{ship});
 			
 			// we're done here
 			return gameObject;

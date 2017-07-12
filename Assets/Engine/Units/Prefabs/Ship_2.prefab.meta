@@ -1,10 +1,8 @@
 fileFormatVersion: 2
-guid: aaea518eddb162441aee2101cacf463a
+guid: 0febf4ea0a8f0514fb4d2778cdea1f55
 labels:
-- Fighter
-- Terran
 - Warship
-timeCreated: 1499245597
+timeCreated: 1499553682
 licenseType: Pro
 NativeFormatImporter:
   mainObjectFileID: 100100000
