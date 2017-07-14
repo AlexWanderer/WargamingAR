@@ -21,7 +21,7 @@ namespace WAR.Game {
 			UIInput.TouchObservable.Subscribe(handleTouch);
 		}
 		
-		void Clear() {
+		public static void ClearSelection() {
 			while (Selection.Count > 0) {
 				Selection.RemoveAt(0);
 			}
@@ -35,7 +35,7 @@ namespace WAR.Game {
 			// if we didn't hit something the user means to 
 			if (hits.Length == 0) {
 				// clear the current selection
-				Clear();
+				ClearSelection();
 			} 
 			// otherwise we hit something that could have selectable objects
 			else {
@@ -46,7 +46,7 @@ namespace WAR.Game {
 				// if the target is a cell with contents
 				if (cell != null && cell.objects.Count > 0) {
 					// use the contents as the selection using remove so that subscribers can listen
-					Clear();
+					ClearSelection();
 					// add each object in the cell to the selection
 					foreach (var obj in cell.objects) {
 						Selection.Add(obj);

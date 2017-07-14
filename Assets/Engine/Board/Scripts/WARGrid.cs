@@ -76,7 +76,7 @@ namespace WAR.Board {
 				var id = hit.collider.GetComponent<WARActorCell>().id;
 				// we clicked on cell so move the current select to the cell
 				var list = new List<WARGridObject>();
-				foreach (var selected in WARControlSelection.Selection) {
+				foreach (var selected in WARControlSelection.Selection ) {
 					list.Add(selected);
 				}
 				

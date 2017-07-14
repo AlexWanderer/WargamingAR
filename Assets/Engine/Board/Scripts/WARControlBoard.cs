@@ -31,7 +31,7 @@ namespace WAR.Board {
 			if (table != null) {
 				GameObject.Destroy(table);
 				// clear the selection
-				WARControlSelection.Selection.Clear();
+				WARControlSelection.ClearSelection();
 			}
 			
 			// create a new object

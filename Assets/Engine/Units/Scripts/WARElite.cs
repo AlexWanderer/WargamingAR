@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using WAR.Board;
-
 namespace WAR.Units {
-	public abstract class WARUnit : WARGridObject {
+	public class WARElite : WARUnit {
+		
 	}
 }
