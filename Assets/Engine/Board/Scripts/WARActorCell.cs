@@ -18,6 +18,9 @@ namespace WAR.Board {
 		public ReactiveCollection<WARGridObject> objects = new ReactiveCollection<WARGridObject>();
 		public BoolReactiveProperty highlighted = new BoolReactiveProperty(false);
 		
+		// store our neighbors for pathing reference
+		public List<int> neighbors = new List<int>();
+		
 		Color defaultColor;
 		
 		public WARActorCell Init() {

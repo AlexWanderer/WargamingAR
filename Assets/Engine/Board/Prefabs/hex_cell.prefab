@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1928794955322946
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908832601691616}
-  m_Text: 55,55
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.25
   m_LineSpacing: 1
@@ -194,3 +194,6 @@ MonoBehaviour:
   id: 0
   highlightedMaterial: {fileID: 2100000, guid: 4df0ec14e2b9a61418c7fc67a78b8cff, type: 2}
   defaultMaterial: {fileID: 2100000, guid: bfcb6e0990aafd046b7c301c420c81b3, type: 2}
+  highlighted:
+    value: 0
+  neighbors: 
