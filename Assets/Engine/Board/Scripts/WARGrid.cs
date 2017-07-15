@@ -97,6 +97,18 @@ namespace WAR.Board {
 			cells[cellId].highlighted.Value = true;
 		}
 		
+		public WARActorCell GetCell(int cellId) {
+			// return the desired cell if it is a valid id
+			if (0 <= cellId && cellId < cells.Count) {
+				return cells[cellId];
+			} 
+			// else raise an error that we could not do so
+			else {
+				Debug.LogError("cannot return cell with id:" + cellId.ToString());
+				return null;
+			}
+		}
+		
 		// when the object is destroyed
 		public void OnDestroy() {
 			// make sure to clean up any subscriptions
