@@ -50,14 +50,14 @@ namespace WAR.Pathfinder.Tests  {
 			child.transform.SetParent(hex.transform);
 			child.AddComponent<TextMesh>();
 			
-			
-			// initialize our grid with this plane and an empty hex cell 'prefab'
-			grid.initialize(plane,hex);
-			// create the grid to populate cell metadata
-			grid.createGrid();
-			
 			// an astar pathfinder to test
 			var finder = new WARPathAStar();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex, finder);
+			// create the grid to populate cell metadata
+			grid.createGrid();
 			
 			// the source of the source map
 			int cellId = 3;
@@ -102,14 +102,14 @@ namespace WAR.Pathfinder.Tests  {
 			child.transform.SetParent(hex.transform);
 			child.AddComponent<TextMesh>();
 			
-			
-			// initialize our grid with this plane and an empty hex cell 'prefab'
-			grid.initialize(plane,hex);
-			// create the grid to populate cell metadata
-			grid.createGrid();
-			
 			// an astar pathfinder to test
 			var finder = new WARPathAStar();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex, finder);
+			// create the grid to populate cell metadata
+			grid.createGrid();
 			
 			// compute the path from 3 to 9
 			var path = finder.findPath(3, 9, grid);
@@ -145,14 +145,14 @@ namespace WAR.Pathfinder.Tests  {
 			child.transform.SetParent(hex.transform);
 			child.AddComponent<TextMesh>();
 			
-			
-			// initialize our grid with this plane and an empty hex cell 'prefab'
-			grid.initialize(plane,hex);
-			// create the grid to populate cell metadata
-			grid.createGrid();
-			
 			// an astar pathfinder to test
 			var finder = new WARPathAStar();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex, finder);
+			// create the grid to populate cell metadata
+			grid.createGrid();
 			
 			// compute the path from 3 to 9
 			var path = finder.findPath(3, 22, grid);
@@ -187,14 +187,14 @@ namespace WAR.Pathfinder.Tests  {
 			child.transform.SetParent(hex.transform);
 			child.AddComponent<TextMesh>();
 			
-			
-			// initialize our grid with this plane and an empty hex cell 'prefab'
-			grid.initialize(plane,hex);
-			// create the grid to populate cell metadata
-			grid.createGrid();
-			
 			// an astar pathfinder to test
 			var finder = new WARPathAStar();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex, finder);
+			// create the grid to populate cell metadata
+			grid.createGrid();
 			
 			// compute the path from 3 to 3 full columns to the right
 			var path = finder.findPath(3, numberOfRows * 3 + 3, grid);

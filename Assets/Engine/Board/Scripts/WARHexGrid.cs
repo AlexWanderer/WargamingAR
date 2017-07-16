@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityTest;
 using System.Linq;
 using WAR.UI;
+using WAR.Pathfinder;
 
 namespace WAR.Board {
 	public class WARHexGrid : WARGrid {
@@ -13,7 +14,8 @@ namespace WAR.Board {
 		
 		private float globalGridScale = 0.01f;
 		
-		public void initialize(UIPlane plane, GameObject hexPrefab) {
+		public void initialize(UIPlane plane, GameObject hexPrefab, IWARPathfinder pathfinder) {
+			base.initialize(pathfinder);
 			this.plane = plane;
 			this.hexPrefab = hexPrefab;
 		}
