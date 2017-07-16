@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine.TestTools;
 using NUnit.Framework;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using WAR.Board;
@@ -24,7 +25,7 @@ namespace WAR.Pathfinder.Tests  {
 		//
 		
 		[Test]
-		public void CostMap() {
+		public void AStarCostMap() {
 			var go = new GameObject();
 			// TODO make a mock grid class to test with
 			// hex grid instantiates our WARGrid abstact logic
@@ -70,8 +71,94 @@ namespace WAR.Pathfinder.Tests  {
 			Assert.AreEqual(1, map[2]);
 			Assert.AreEqual(2, map[10]);
 			Assert.AreEqual(3, map[11]);
+			Assert.AreEqual(3, map[9]);
 			Assert.AreEqual(4, map[19]);
 			Assert.AreEqual(5, map[20]);
+		}
+		
+		[Test]
+		public void AStarStraightPath() {
+			var go = new GameObject();
+			// TODO make a mock grid class to test with
+			// hex grid instantiates our WARGrid abstact logic
+			var grid = go.AddComponent<WARHexGrid>();
+			float globalScale = 0.01f;
+			
+			float outterRadius = 1f * globalScale;
+			float innerRadius = outterRadius * Mathf.Sqrt(3) / 2f;
+			
+			float numberOfColumns = 3f;
+			float numberOfRows = 9f;
+			
+			// create a plane on the origin with an extent of 0.25f
+			var plane = new UIPlane {
+				center = Vector3.zero,
+				extent = new Vector3(3f * numberOfColumns * outterRadius, 0f, numberOfRows * innerRadius)
+			};
+			var hex = new GameObject("hex cell");
+			hex.AddComponent<WARActorCell>();
+			hex.AddComponent<MeshRenderer>();
+			var child = new GameObject();
+			child.transform.SetParent(hex.transform);
+			child.AddComponent<TextMesh>();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex);
+			// create the grid to populate cell metadata
+			grid.createGrid();
+			
+			// an astar pathfinder to test
+			var finder = new WARPathAStar();
+			
+			// compute the path from 3 to 9
+			var path = finder.findPath(3, 9, grid);
+			// the path we expect back
+			var target = new List<int>{3, 2, 10, 9};
+			
+			// make sure we got what we want
+			Assert.AreEqual(target, path);
+		}
+		[Test]
+		public void AStarPath() {
+			var go = new GameObject();
+			// TODO make a mock grid class to test with
+			// hex grid instantiates our WARGrid abstact logic
+			var grid = go.AddComponent<WARHexGrid>();
+			float globalScale = 0.01f;
+			
+			float outterRadius = 1f * globalScale;
+			float innerRadius = outterRadius * Mathf.Sqrt(3) / 2f;
+			
+			float numberOfColumns = 3f;
+			float numberOfRows = 9f;
+			
+			// create a plane on the origin with an extent of 0.25f
+			var plane = new UIPlane {
+				center = Vector3.zero,
+				extent = new Vector3(3f * numberOfColumns * outterRadius, 0f, numberOfRows * innerRadius)
+			};
+			var hex = new GameObject("hex cell");
+			hex.AddComponent<WARActorCell>();
+			hex.AddComponent<MeshRenderer>();
+			var child = new GameObject();
+			child.transform.SetParent(hex.transform);
+			child.AddComponent<TextMesh>();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex);
+			// create the grid to populate cell metadata
+			grid.createGrid();
+			
+			// an astar pathfinder to test
+			var finder = new WARPathAStar();
+			
+			// compute the path from 3 to 9
+			var path = finder.findPath(3, 22, grid);
+			
+			// make sure we got what we want
+			Assert.AreEqual(6, path.Count);
 		}
 		
 	}
