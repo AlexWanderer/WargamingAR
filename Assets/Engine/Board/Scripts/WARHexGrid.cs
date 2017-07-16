@@ -110,8 +110,13 @@ namespace WAR.Board {
 				// ask for southeast corner
 				return new List<int>{bottom,bottomRight,topRight};
 			}
-			// top right corner
-			if (cellId == numberOfRows * numberOfColumns - 1) {
+			// top right corner and even board count
+			if (cellId == numberOfRows * numberOfColumns - 2 && (numberOfRows * numberOfColumns) % 2 == 0) {
+				// ask for south-southwest corner
+				return new List<int>{bottom,bottomLeft,topLeft};
+			}
+			// top right corner and odd board count
+			if (cellId == numberOfRows * numberOfColumns - 1 && (numberOfRows * numberOfColumns) % 2 == 1) {
 				// ask for south-southwest corner
 				return new List<int>{bottom,bottomLeft};
 			}

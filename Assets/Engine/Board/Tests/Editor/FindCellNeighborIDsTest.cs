@@ -138,5 +138,18 @@ namespace WAR.Board.Tests {
 			var target = new List<int>{24,25};
 			RunTest(cellId,target);	
 		}
+		[Test]
+		public void TopRightCornerEven() {
+			// compute the result
+			var result = WARHexGrid.FindCellNeighborIDs(28, 3, 10);
+			var target = new List<int>{29,27,26};
+			// make sure we got the right amount
+			Assert.AreEqual(target.Count, result.Count);
+			target.Sort();
+			result.Sort();
+			// make sure each element is what we expect
+			Assert.AreEqual(target,result);
+		}
+		
 	}
 }

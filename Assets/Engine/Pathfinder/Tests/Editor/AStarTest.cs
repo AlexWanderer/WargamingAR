@@ -160,6 +160,48 @@ namespace WAR.Pathfinder.Tests  {
 			// make sure we got what we want
 			Assert.AreEqual(6, path.Count);
 		}
+		[Test]
+		public void AStarPathLargeBoard() {
+			var go = new GameObject();
+			// TODO make a mock grid class to test with
+			// hex grid instantiates our WARGrid abstact logic
+			var grid = go.AddComponent<WARHexGrid>();
+			float globalScale = 0.01f;
+			
+			float outterRadius = 1f * globalScale;
+			float innerRadius = outterRadius * Mathf.Sqrt(3) / 2f;
+			
+			// 48in x 72in table
+			int numberOfColumns = 24;
+			int numberOfRows = 144;
+			
+			// create a plane on the origin with an extent of 0.25f
+			var plane = new UIPlane {
+				center = Vector3.zero,
+				extent = new Vector3(3f * numberOfColumns * outterRadius, 0f, numberOfRows * innerRadius)
+			};
+			var hex = new GameObject("hex cell");
+			hex.AddComponent<WARActorCell>();
+			hex.AddComponent<MeshRenderer>();
+			var child = new GameObject();
+			child.transform.SetParent(hex.transform);
+			child.AddComponent<TextMesh>();
+			
+			
+			// initialize our grid with this plane and an empty hex cell 'prefab'
+			grid.initialize(plane,hex);
+			// create the grid to populate cell metadata
+			grid.createGrid();
+			
+			// an astar pathfinder to test
+			var finder = new WARPathAStar();
+			
+			// compute the path from 3 to 3 full columns to the right
+			var path = finder.findPath(3, numberOfRows * 3 + 3, grid);
+			
+			// make sure we got what we want
+			Assert.AreEqual(7, path.Count);
+		}
 		
 	}
 }
