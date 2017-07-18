@@ -59,6 +59,8 @@ namespace WAR.Board {
 		
 		// return the a new table with cool stuffs
 		private GameObject createTable(UIPlane plane) {
+			var tableObject = new GameObject();
+			
 			// instantiate the appropriate pathfinder
 			switch (pathfinderType) {
 			// if we are making an astar
@@ -72,7 +74,7 @@ namespace WAR.Board {
 			// if we are building a hex grid
 			case GRID_TYPE.hex:
 				// fill our plane extent with hex slots
-				WARHexGrid hexGrid = gameObject.AddComponent<WARHexGrid>() as WARHexGrid;
+				WARHexGrid hexGrid = tableObject.AddComponent<WARHexGrid>() as WARHexGrid;
 				hexGrid.initialize(plane, hexSlot, pathfinder);
 				grid = hexGrid;
 				break;
@@ -86,12 +88,14 @@ namespace WAR.Board {
 			
 			// add a ship to play with
 			var ship = GameObject.Instantiate(
-				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop"), gameObject.transform
+				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop"), tableObject.transform
 			).GetComponent<WARUnit>() as WARGridObject;
 			grid.addObjectsToCell(0,new List<WARGridObject>{ship});
+			// place the ship over the cell
+			ship.transform.position = grid.GetCell(0).transform.position;
 			
 			// we're done here
-			return gameObject;
+			return tableObject;
 		}
 		
 		// when a move order is issued
