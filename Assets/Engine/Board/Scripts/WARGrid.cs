@@ -6,6 +6,7 @@ using UniRx;
 using WAR.UI;
 using WAR.Game;
 using WAR.Pathfinder;
+using WAR.Tools;
 
 namespace WAR.Board {
 	public abstract class WARGrid : MonoBehaviour {
@@ -72,12 +73,12 @@ namespace WAR.Board {
 		public void moveObjectsToCell(int target, List<WARGridObject> objects ) {
 			// TODO, cleanup this findCellsUnderObject call, maybe just pass source cellId in
 			// use the first object we are trying to move to find the cell id of the highlighted cell
-			int source = findCellsUnderObject(objects[0])[0];
-
+			var source = findCellsUnderObject(objects[0])[0];
 			// if we have one
 			if (pathfinder != null) {
 				// compute the path joining the two cells on this grid
 				var path = pathfinder.findPath(source, target, this);
+				Debug.Log(path);
 
 				// tell each object to follow the path we specified
 				foreach (var obj in objects) {
