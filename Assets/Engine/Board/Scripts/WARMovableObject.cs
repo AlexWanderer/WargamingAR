@@ -37,6 +37,8 @@ namespace WAR.Board {
 				var source = grid.GetCell(lastCell);
 				var target = grid.GetCell(cell);
 				
+				gameObject.transform.LookAt(target.transform.position);
+				
 				// move between this cell and the next
 				yield return moveBetweenCells(source, target, grid);
 				

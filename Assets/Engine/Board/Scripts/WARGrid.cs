@@ -78,7 +78,6 @@ namespace WAR.Board {
 			if (pathfinder != null) {
 				// compute the path joining the two cells on this grid
 				var path = pathfinder.findPath(source, target, this);
-				Debug.Log(path);
 
 				// tell each object to follow the path we specified
 				foreach (var obj in objects) {
