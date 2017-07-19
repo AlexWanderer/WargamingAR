@@ -9,6 +9,8 @@ namespace WAR.Board {
 	public abstract class WARMovableObject : WARGridObject {
 		// the amount of time between cells
 		public float speed = 0.5f;
+		// the current cell we are under
+		private WARActorCell lastCell;
 		
 		private Coroutine pathRoutine;
 
@@ -36,7 +38,7 @@ namespace WAR.Board {
 				var target = grid.GetCell(cell);
 				
 				// move between this cell and the next
-				yield return moveBetweenCells(source, target);
+				yield return moveBetweenCells(source, target, grid);
 				
 				// make sure we move between this cell next time
 				lastCell = cell;
@@ -45,7 +47,7 @@ namespace WAR.Board {
 		}
 
 		// coroutine to move object between cells
-		private IEnumerator moveBetweenCells(WARActorCell source, WARActorCell target) {
+		private IEnumerator moveBetweenCells(WARActorCell source, WARActorCell target, WARGrid grid) {
 			// the moment in time along the path between the two cells 
 			var i = 0.0f;
 			// the amount to move per tick
@@ -55,12 +57,29 @@ namespace WAR.Board {
 			if (source == target) {
 				yield break;
 			}
+			// make sure the current cell highlighted
+			lastCell = grid.GetCell(grid.findCellsUnderObject(this)[0]);
+			lastCell.highlighted.Value = true;
 
 			// until we reach the end
 			while (i < 1.0) {
 				// increment the distance counter to the next tick
 				i += Time.deltaTime * rate;
-
+				
+				// raycast to find the cell under us
+				var currentCell = grid.GetCell(grid.findCellsUnderObject(this)[0]);
+				
+				// if the cell is different from the last one we saw
+				if (lastCell.id != currentCell.id) {
+					// unhighlight the last cell
+					lastCell.highlighted.Value = false;
+					// and highlilght the one we are under
+					currentCell.highlighted.Value = true;
+					
+					// update the cell tracker
+					lastCell = currentCell;
+				}
+				
 				// update our position to the appropriate part of the lerp
 				gameObject.transform.position = Vector3.Lerp(
 					source.transform.position,
