@@ -12,22 +12,24 @@ namespace WAR.Board {
 		// the current cell we are under
 		private WARActorCell lastCell;
 		
-		private Coroutine pathRoutine;
+		private IEnumerator pathRoutine;
 
 		public void followPath(List<int> path, WARGrid grid)  {
 			// make sure the source isn't highlighted
 			grid.GetCell(path[0]).highlighted.Value = false;
 			
-			// start walking the path
-			pathRoutine = StartCoroutine(walkPath(path, grid));
-		}
-
-		private IEnumerator walkPath(List<int> path, WARGrid grid) {
 			// if we are in the middle of walking a path
 			if (pathRoutine != null) {
 				// stop the previous routine
 				StopCoroutine(pathRoutine);
 			}
+			
+			// start walking the path
+			pathRoutine = walkPath(path, grid);
+			StartCoroutine(pathRoutine);
+		}
+
+		private IEnumerator walkPath(List<int> path, WARGrid grid) {
 			
 			// the last cell we saw	
 			var lastCell = path[0];
@@ -46,6 +48,8 @@ namespace WAR.Board {
 				lastCell = cell;
 			}
 			
+			// we're done with our coroutine
+			pathRoutine = null;
 		}
 
 		// coroutine to move object between cells
