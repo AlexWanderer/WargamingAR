@@ -5,6 +5,6 @@ using UnityEngine;
 using WAR.Board;
 
 namespace WAR.Units {
-	public abstract class WARUnit : WARGridObject {
+	public abstract class WARUnit : WARMovableObject {
 	}
 }

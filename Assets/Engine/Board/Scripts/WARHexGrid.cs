@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityTest;
 using System.Linq;
 using WAR.UI;
+using WAR.Pathfinder;
 
 namespace WAR.Board {
 	public class WARHexGrid : WARGrid {
@@ -12,7 +14,8 @@ namespace WAR.Board {
 		
 		private float globalGridScale = 0.01f;
 		
-		public void initialize(UIPlane plane, GameObject hexPrefab) {
+		public void initialize(UIPlane plane, GameObject hexPrefab, IWARPathfinder pathfinder) {
+			base.initialize(pathfinder);
 			this.plane = plane;
 			this.hexPrefab = hexPrefab;
 		}
@@ -66,6 +69,8 @@ namespace WAR.Board {
 						cell.id = id;
 						// and add it to the list
 						cells.Add(cell);
+						cell.GetComponentInChildren<TextMesh>().text = id.ToString();
+						cell.neighbors = FindCellNeighborIDs(cell.id,numberOfColumns,numberOfRows);
 						
 						// increment the id counter
 						id++;
@@ -73,13 +78,100 @@ namespace WAR.Board {
 				}
 			}
 			
-			// align the table to match the design			ated plane
+			// align the table to match the designated plane
 			transform.rotation = plane.rotation;	
 		}
 		
+		public static List<int> FindCellNeighborIDs(int cellId, int numberOfColumns, int numberOfRows) {
+			int top = cellId + 2;
+			int bottom = cellId - 2;
+			int topLeft;
+			int topRight;
+			int bottomLeft;
+			int bottomRight;
+			int cellMod = cellId % numberOfRows;
+			
+			
+			int bottomRightCornerID = numberOfRows * numberOfColumns - 1 - (numberOfRows - 1);
+			
+			// if we are an even cell
+			if (cellMod % 2 == 0){
+				// calculate even dependent neighbors
+				topLeft = cellId + 1;
+				bottomLeft = cellId - 1;
+			} else {
+				// calculate odd dependent neighbors
+				topLeft = cellId - (numberOfRows - 1);
+				bottomLeft = cellId - (numberOfRows + 1);
+			}
+			topRight = topLeft + numberOfRows;
+			bottomRight = bottomLeft + numberOfRows;
+			
+			// top left corner
+			if (cellId == numberOfRows - 2) {
+				// ask for southeast corner
+				return new List<int>{bottom,bottomRight,topRight};
+			}
+			// top right corner and even board count
+			if (cellId == numberOfRows * numberOfColumns - 2 && (numberOfRows * numberOfColumns) % 2 == 0) {
+				// ask for south-southwest corner
+				return new List<int>{bottom,bottomLeft,topLeft};
+			}
+			// top right corner and odd board count
+			if (cellId == numberOfRows * numberOfColumns - 1 && (numberOfRows * numberOfColumns) % 2 == 1) {
+				// ask for south-southwest corner
+				return new List<int>{bottom,bottomLeft};
+			}
+			// bottom right corner
+			if (cellId == bottomRightCornerID) {
+				// ask for north-northwest corner
+				return new List<int>{top,topLeft};
+			}
+			// bottom left corner
+			if (cellId == 1) {
+				// ask for northeast corner
+				return new List<int>{top,topRight,bottomRight};
+			}
+			// left most edge
+			if (cellId < numberOfRows && cellId % 2 == 1) {
+				// all but the eastern cells
+				return new List<int>{top,topRight,bottomRight,bottom};
+			}
+			// right most edge
+			if (cellId > bottomRightCornerID && cellId % 2 == 0) {
+				// all but the western cells
+				return new List<int>{top,topLeft,bottomLeft,bottom};
+			}
+			
+			// are we on the bottom 
+			if (cellMod == 0) {
+				// ask for northern three neighbors
+				return new List<int>{top,topLeft,topRight};
+			}
+			// else one from bottom
+			if (cellMod == 1) {
+				// ask for all but bottom neighbor
+				return new List<int>{top,topLeft,topRight,bottomLeft,bottomRight};
+			}
+			// are we on the top
+			if (cellMod == numberOfRows - 1) {
+				// ask for southern three neighbors
+				return new List<int>{bottom,bottomLeft,bottomRight};
+			}
+			// else one from top
+			if (cellMod == numberOfRows - 2) {
+				// ask for all but the top neighbor
+				return new List<int>{bottom,bottomLeft,bottomRight,topLeft,topRight};
+			}
+		
+			// else we are not a special case and we can return all 6 neighbors
+			return new List<int>{top,topLeft,topRight,bottom,bottomLeft,bottomRight};
+		}
+	
 		// TODO, cleanup these functions, they are verbose..
 		
-		public override void addObjectsToCell(int cellId, List<WARGridObject> objects) {
+		public override void addObjectsToCell(int cellId, List<WARGridObject> objects) {	
+			Debug.Log("adding object to cell");
 			// find the designated cell
 			WARActorCell cell = null;
 			foreach (var c in cells) {
