@@ -32,18 +32,16 @@ namespace WAR.Board {
 		[EnumToggleButtons]
 		public PATHFINDER_TYPE pathfinderType = PATHFINDER_TYPE.astar;
 		
-		public void Start () {
+		public void Start() {
 			// initialize the board at the appropriate time
 			StartCoroutine(WaitForUIInput());
-			// a move order is issued when there is a clicked with a non-zero selection
-			UIInput.TouchObservable.Where(_ => WARControlSelection.Selection.Count > 0).Subscribe(moveObject);
 		}
 		
 		IEnumerator WaitForUIInput() {
 			while (UIInput.Instance == null) yield return null;
+			Debug.Log("adding initBoard");
 			UIInput.Instance.onBoardInit += initBoard;
 		}
-		
 		
 		public void initBoard (UIPlane plane) {
 			// remove an existing table if there is one
@@ -98,25 +96,9 @@ namespace WAR.Board {
 			return tableObject;
 		}
 		
-		// when a move order is issued
-		public void moveObject(Vector3 pos) {
-			// find the cell underneath the point we clicked
-			RaycastHit hit;
-			int layerMask = 1 << (int)Layers.TableTile;
-			
-			// if there is an object under the vector
-			if (Physics.Raycast(ray: Camera.main.ScreenPointToRay(pos), hitInfo: out hit, maxDistance: 5, layerMask: layerMask)) {
-				// the id of the cell we clicked on 
-				var id = hit.collider.GetComponent<WARActorCell>().id;
-				// we clicked on cell so move the current select to the cell
-				var list = new List<WARGridObject>();
-				foreach (var selected in WARControlSelection.Selection ) {
-					list.Add(selected);
-				}
-				
-				// move the selection to the right cell
-				grid.moveObjectsToCell(id, list);	 			
-			}
+		// move objects to a cell on our grid
+		public static void MoveObjectsToCell(int cellId, List<WARGridObject> objects) {
+			WARControlBoard.Instance.grid.moveObjectsToCell(cellId, objects);	 			
 		}
 	}
 }            
