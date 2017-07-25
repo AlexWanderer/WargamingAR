@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using WAR.Game;
 
 namespace WAR.UI {
 	public class UIDesktopInputControl : MonoBehaviour
@@ -42,21 +43,23 @@ namespace WAR.UI {
 	    // Update is called once per frame
 		void Update()
 		{
-			// save our click start position
-			if (Input.GetMouseButtonDown(0)) {
-				mouseClickStart = Input.mousePosition;
+			if (WARControlGame.Mode.Value.current == GAME_MODE.setup) {
+				// save our click start position
+				if (Input.GetMouseButtonDown(0)) {
+					mouseClickStart = Input.mousePosition;
+				}
+				if (Input.GetMouseButtonUp(0)) {
+					// TODO use this layer mask to figure out if we are hitting a tile or not when we click
+					Vector2 mouseClickEnd = Input.mousePosition;
+					TriggerInitializeBoard(FindPlaneExtent());
+				}
+				// while the mouse is down, draw a plane to represent the drag
+				if (Input.GetMouseButton(0)) {
+					UIPlane plane = FindPlaneExtent();
+					UpdatePlane(plane.start,plane.end);
+				}			
+				DrawPlane();
 			}
-			if (Input.GetMouseButtonUp(0)) {
-				// TODO use this layer mask to figure out if we are hitting a tile or not when we click
-				Vector2 mouseClickEnd = Input.mousePosition;
-				TriggerInitializeBoard(FindPlaneExtent());
-			}
-			// while the mouse is down, draw a plane to represent the drag
-			if (Input.GetMouseButton(0)) {
-				UIPlane plane = FindPlaneExtent();
-				UpdatePlane(plane.start,plane.end);
-			}			
-			DrawPlane();
 		}
 		
 		void UpdatePlane(Vector3 planeStart, Vector3 planeEnd, float delay = 0f) {

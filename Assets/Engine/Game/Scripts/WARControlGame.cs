@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
 using WAR.Board;
@@ -12,36 +13,47 @@ namespace WAR.Game {
 		command,
 		shooting,
 		assault,
+		morale,
 	}
+	public enum GAME_MODE {
+		setup,
+		deployment,
+		gameplay,
+		score,
+	}
+	public struct Epoch<T> {
+		public T last;
+		public T current;
+		
+		public Epoch(T _last, T _curr) {
+			this.last = _last;
+			this.current = _curr;
+		}
+	}
+
+	
+	
 	
 	public class WARControlGame : Manager<WARControlGame> {
-		
+	
 		// the phase of the game, the current step in the turn
-		public ReactiveProperty<GAME_PHASE> phase = new ReactiveProperty<GAME_PHASE>();
+		public static ReactiveProperty<Epoch<GAME_PHASE>> Phase = new ReactiveProperty<Epoch<GAME_PHASE>>();
+		// the mode of the game we are in
+		public static ReactiveProperty<Epoch<GAME_MODE>> Mode = new ReactiveProperty<Epoch<GAME_MODE>>();
 		
 		public static void SetPhase(GAME_PHASE newPhase) {
-			// set the current phase to the desired phase
-			WARControlGame.Instance.phase.Value = newPhase;
+			// set the current game phase
+			Phase.Value = new Epoch<GAME_PHASE>(Phase.Value.current,newPhase);
 		}
-		public static void NextPhase() {
-			
-			SetPhase(WARControlGame.Instance.phase.Value + 1);
-		}
-		
-		public static ReactiveProperty<GAME_PHASE> Phase {
-			// return the current phase
-			get { 
-				return WARControlGame.Instance.phase; 
-			}
-		}
-		
-		public void Awake () {
-			phase.Value =	GAME_PHASE.assault;
+		public static void SetMode(GAME_MODE newMode) {
+			// set the current game mode
+			Mode.Value = new Epoch<GAME_MODE>(Mode.Value.current,newMode);
 		}
 
 		public void Start () {
 			// a move order is issued when there is a click with a non-zero selection
-			UIInput.TouchObservable.Where(_ => phase.Value == GAME_PHASE.movement)
+			UIInput.TouchObservable.Where(_ => Mode.Value.current == GAME_MODE.gameplay &&
+											   Phase.Value.current == GAME_PHASE.movement)
 								   .Where(_ => WARControlSelection.Selection.Count > 0)
 								   .Subscribe(moveObject);
 		}
