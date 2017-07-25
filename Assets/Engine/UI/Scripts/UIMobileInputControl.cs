@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.XR.iOS;
 using UnityEngine;
+using WAR.Game;
 
 namespace WAR.UI {
 	public class UIMobileInputControl : MonoBehaviour
@@ -32,7 +33,7 @@ namespace WAR.UI {
 		public void Update ()
 		{
 	        // if mouse button 0 was clicked
-			if (Input.touchCount > 0 && isSetupPhase) {
+			if (Input.touchCount > 0 && WARControlGame.Mode.Value.current == GAME_MODE.setup) {
 	            // figure out where we touched
 				Touch touch = Input.GetTouch (0);
 				if (touch.phase == TouchPhase.Ended) {
