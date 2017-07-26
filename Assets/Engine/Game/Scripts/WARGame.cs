@@ -3,9 +3,43 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UniRx;
 
 namespace WAR
 {
+	
+	public enum GAME_PHASE {
+		none,
+		movement,
+		command,
+		shooting,
+		assault,
+		morale,
+	}
+	
+	public enum GAME_MODE {
+		none,
+		setup,
+		deployment,
+		gameplay,
+		score,
+	}
+	
+	public struct Epoch<T> {
+		public T last;
+		public T current;
+		
+		public Epoch(T _curr) {
+			this.last = default(T);
+			this.current = _curr;
+		}
+		
+		public Epoch(T _last, T _curr) {
+			this.last = _last;
+			this.current = _curr;
+		}
+	}
+	
     /// <summary>
     /// Entry point of all game-wide serialized data.
     /// The WARGame is a self-regulating script.
@@ -29,6 +63,28 @@ namespace WAR
         {
             get { return instance; }
         }
+	    
+	    
+		// the phase of the game, the current step in the turn
+	    public static ReactiveProperty<Epoch<GAME_PHASE>> Phase = new ReactiveProperty<Epoch<GAME_PHASE>>();
+		// the mode of the game we are in
+	    public static ReactiveProperty<Epoch<GAME_MODE>> Mode = new ReactiveProperty<Epoch<GAME_MODE>>();
+	    
+	    public static void SetPhase(GAME_PHASE newPhase) {
+			// set the current game phase
+		    Phase.SetValueAndForceNotify(new Epoch<GAME_PHASE>(Phase.Value.current, newPhase));
+	    }
+	    public static void SetMode(GAME_MODE newMode) {
+	    	Debug.Log("setting mode to " + newMode);
+			// set the current game mode
+		    Mode.SetValueAndForceNotify(new Epoch<GAME_MODE>(Mode.Value.current, newMode));
+	    }
+	    
+	    private void Awake() {
+	    	// start off in the deployment mode
+	    	Mode.SetValueAndForceNotify(new Epoch<GAME_MODE>(GAME_MODE.setup));
+	    }
+	    
 
         private void Start()
         {

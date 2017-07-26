@@ -5,57 +5,31 @@ using UniRx;
 using UnityEngine;
 using WAR.Board;
 using WAR.UI;
+using WAR;
 
 namespace WAR.Game {
-	
-	public enum GAME_PHASE {
-		movement,
-		command,
-		shooting,
-		assault,
-		morale,
-	}
-	public enum GAME_MODE {
-		setup,
-		deployment,
-		gameplay,
-		score,
-	}
-	public struct Epoch<T> {
-		public T last;
-		public T current;
+	public class WARControlGameplay : Manager<WARControlGameplay> {
 		
-		public Epoch(T _last, T _curr) {
-			this.last = _last;
-			this.current = _curr;
-		}
-	}
-
-	
-	
-	
-	public class WARControlGame : Manager<WARControlGame> {
-	
-		// the phase of the game, the current step in the turn
-		public static ReactiveProperty<Epoch<GAME_PHASE>> Phase = new ReactiveProperty<Epoch<GAME_PHASE>>();
-		// the mode of the game we are in
-		public static ReactiveProperty<Epoch<GAME_MODE>> Mode = new ReactiveProperty<Epoch<GAME_MODE>>();
+		// wether or not we are in the gamplay mode
 		
-		public static void SetPhase(GAME_PHASE newPhase) {
-			// set the current game phase
-			Phase.Value = new Epoch<GAME_PHASE>(Phase.Value.current,newPhase);
-		}
-		public static void SetMode(GAME_MODE newMode) {
-			// set the current game mode
-			Mode.Value = new Epoch<GAME_MODE>(Mode.Value.current,newMode);
-		}
-
+		
 		public void Start () {
+			// when we set a mode and it's directed towards the gameplay mode
+			WARGame.Mode.Where(epoch => epoch.current == GAME_MODE.gameplay)
+						// call the init handler
+						.Subscribe(initMode);
+			
 			// a move order is issued when there is a click with a non-zero selection
-			UIInput.TouchObservable.Where(_ => Mode.Value.current == GAME_MODE.gameplay &&
-											   Phase.Value.current == GAME_PHASE.movement)
+			UIInput.TouchObservable.Where(_ => WARGame.Mode.Value.current == GAME_MODE.gameplay &&
+											   WARGame.Phase.Value.current == GAME_PHASE.movement)
 								   .Where(_ => WARControlSelection.Selection.Count > 0)
 								   .Subscribe(moveObject);
+		}
+		
+		// called when we move to the gameplay mode
+		public void initMode(Epoch<GAME_MODE> modeEpoch) {
+			// start in the movement phase
+			WARGame.SetPhase(GAME_PHASE.movement);
 		}
 		
 		// when a move order is issued

@@ -8,8 +8,6 @@ using UniRx;
 using Sirenix.OdinInspector;
 using WAR.UI;
 using WAR.Game;
-using WAR.Tools;
-using WAR.Units;
 using WAR.Pathfinder;
 
 namespace WAR.Board {
@@ -25,6 +23,12 @@ namespace WAR.Board {
 		public GameObject hexSlot;
 		
 		private WARGrid grid;
+		public static WARGrid Grid {
+			get {
+				return WARControlBoard.Instance.grid;
+			}
+		}
+		
 		[EnumToggleButtons]
 		public GRID_TYPE gridType = GRID_TYPE.hex;
 		
@@ -53,6 +57,9 @@ namespace WAR.Board {
 			
 			// create a new object
 			table = createTable(plane);
+			
+			// we're done with the setup mode so move to the deployment mode
+			WARGame.SetMode(GAME_MODE.deployment);
 		}
 		
 		// return the a new table with cool stuffs
@@ -84,21 +91,24 @@ namespace WAR.Board {
 			// draw the grid
 			grid.createGrid();
 			
-			// add a ship to play with
-			var ship = GameObject.Instantiate(
-				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop"), tableObject.transform
-			).GetComponent<WARUnit>() as WARGridObject;
-			grid.addObjectsToCell(0,new List<WARGridObject>{ship});
-			// place the ship over the cell
-			ship.transform.position = grid.GetCell(0).transform.position;
-			
 			// we're done here
 			return tableObject;
 		}
 		
 		// move objects to a cell on our grid
 		public static void MoveObjectsToCell(int cellId, List<WARGridObject> objects) {
-			WARControlBoard.Instance.grid.moveObjectsToCell(cellId, objects);	 			
+			WARControlBoard.Grid.moveObjectsToCell(cellId, objects);	 			
+		}
+		
+		// a static wrapper adding objects to the grid
+		public static void AddObjectsToCell(int cellId, List<WARGridObject> objects) {
+			// make sure the objects we added are parents to the root game object
+			foreach (var obj in objects) {
+				obj.transform.SetParent(WARControlBoard.Instance.table.transform);
+			}
+			
+			// add the objects to the right cell
+			WARControlBoard.Grid.addObjectsToCell(cellId, objects);
 		}
 	}
 }            
