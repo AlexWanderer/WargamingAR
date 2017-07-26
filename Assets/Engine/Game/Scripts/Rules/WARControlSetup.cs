@@ -19,7 +19,9 @@ namespace WAR.Game {
 			
 		}
 		public void setup(Epoch<GAME_MODE> epoch){
-			// setup the game
+			// spawn and add the players to the WARGame
+			WARGame.Players.Add(new WARPlayer(1));
+			WARGame.Players.Add(new WARPlayer(2));			
 		}
 		
 		IEnumerator WaitForUIInput() {
@@ -30,8 +32,7 @@ namespace WAR.Game {
 		public void initBoard (UIPlane plane) {
 			// create a new table with the given plane
 			WARControlBoard.CreateTable(plane);
-			// create the players
-			
+
 			// we're done with the setup mode so move to the deployment mode
 			WARGame.SetMode(GAME_MODE.deployment);
 		}

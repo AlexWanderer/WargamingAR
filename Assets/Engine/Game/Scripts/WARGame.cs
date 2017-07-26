@@ -68,6 +68,12 @@ namespace WAR.Game
 		
 		// reactive collection of the players we have spawned in the game
 		public ReactiveCollection<WARPlayer> players = new ReactiveCollection<WARPlayer>();
+		public static ReactiveCollection<WARPlayer> Players {
+			get {
+				// return the current players
+				return Instance.players;
+			}	
+		}
 	    
 		// the phase of the game, the current step in the turn
 	    public static ReactiveProperty<Epoch<GAME_PHASE>> Phase = new ReactiveProperty<Epoch<GAME_PHASE>>();
