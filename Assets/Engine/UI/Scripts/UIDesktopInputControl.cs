@@ -43,7 +43,7 @@ namespace WAR.UI {
 	    // Update is called once per frame
 		void Update()
 		{
-			if (WARControlGame.Mode.Value.current == GAME_MODE.setup) {
+			if (WARGame.Mode.Value.current == GAME_MODE.setup) {
 				// save our click start position
 				if (Input.GetMouseButtonDown(0)) {
 					mouseClickStart = Input.mousePosition;
