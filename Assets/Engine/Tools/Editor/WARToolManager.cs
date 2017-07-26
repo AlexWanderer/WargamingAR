@@ -5,11 +5,13 @@ using System.IO;
 using System.Reflection;
 using Sirenix.OdinInspector;
 
+using WAR.Game;
+
 #if !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2
 using UnityEngine.SceneManagement;
 #endif
 
-namespace WAR {
+namespace WAR.Tools {
     /// <summary>
     /// This simple tool is there to guaranty that one WAR exist at all time.
     /// Should a new Manager be found, it saves it as an Asset.

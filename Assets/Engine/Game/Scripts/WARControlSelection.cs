@@ -6,6 +6,7 @@ using UniRx;
 using WAR;
 using WAR.UI;
 using WAR.Board;
+using WAR.Tools;
 
 namespace WAR.Game {
 	

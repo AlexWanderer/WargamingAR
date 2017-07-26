@@ -21,7 +21,6 @@ public class WARControlDeployment : Manager<WARControlDeployment> {
 	
 	// the response to clicking when in deployment places a cell owned by the current user
 	public void addObject(Vector3 pos) {
-		Debug.Log("clicked!");
 		// find the cell underneath the point we clicked
 		RaycastHit hit;
 		int layerMask = 1 << (int)Layers.TableTile;

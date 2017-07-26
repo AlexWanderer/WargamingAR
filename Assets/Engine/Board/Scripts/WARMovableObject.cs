@@ -81,6 +81,10 @@ namespace WAR.Board {
 					lastCell.highlighted.Value = false;
 					// and highlilght the one we are under
 					currentCell.highlighted.Value = true;
+					// add ourself to the new cell
+					grid.addObjectsToCell(currentCell.id, new List<WARGridObject>{this});
+					// remove ourself from the old cell
+					grid.removeObjectsFromCell(lastCell.id, new List<WARGridObject>{this});
 					
 					// update the cell tracker
 					lastCell = currentCell;

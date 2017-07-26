@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UniRx;
 
-namespace WAR
+using WAR.Tools;
+
+namespace WAR.Game
 {
 	
 	public enum GAME_PHASE {
@@ -47,23 +49,25 @@ namespace WAR
     /// </summary>
     [AddComponentMenu("")]
 	public sealed class WARGame : MonoBehaviour
-    {
+	{
+		// where the managers are stored in Assets/Resources/
 	    public const string PATH = "Managers/";
-
+		// the list of managers that we have spawned, found in PATH
         private static List<IManager> managers = new List<IManager>();
-
+		// static reference to the set of managers we have spawned
         public static IManager[] Managers
         {
             get { return managers.ToArray(); }
         }
-
+		// singleton logic
 	    private static WARGame instance;
-
 	    public static WARGame Instance
         {
             get { return instance; }
         }
-	    
+		
+		// reactive collection of the players we have spawned in the game
+		public ReactiveCollection<WARPlayer> players = new ReactiveCollection<WARPlayer>();
 	    
 		// the phase of the game, the current step in the turn
 	    public static ReactiveProperty<Epoch<GAME_PHASE>> Phase = new ReactiveProperty<Epoch<GAME_PHASE>>();
@@ -75,7 +79,6 @@ namespace WAR
 		    Phase.SetValueAndForceNotify(new Epoch<GAME_PHASE>(Phase.Value.current, newPhase));
 	    }
 	    public static void SetMode(GAME_MODE newMode) {
-	    	Debug.Log("setting mode to " + newMode);
 			// set the current game mode
 		    Mode.SetValueAndForceNotify(new Epoch<GAME_MODE>(Mode.Value.current, newMode));
 	    }

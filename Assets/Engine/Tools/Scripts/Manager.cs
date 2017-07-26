@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace WAR
+namespace WAR.Tools
 {
     /// <summary>
     /// Base manager class that inforces a self-referencing singleton pattern.
