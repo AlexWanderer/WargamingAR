@@ -15,13 +15,12 @@ public class WARControlDeployment : Manager<WARControlDeployment> {
 	void Start () {
 		// when clicking on a cell in the deployment phase
 		UIInput.TouchObservable.Where(_ => WARGame.Mode.Value.current == GAME_MODE.deployment)
-			   .Subscribe(addObject);
+			.Subscribe(addObject).AddTo(disposables);
 		
 	}
 	
 	// the response to clicking when in deployment places a cell owned by the current user
 	public void addObject(Vector3 pos) {
-		Debug.Log("clicked!");
 		// find the cell underneath the point we clicked
 		RaycastHit hit;
 		int layerMask = 1 << (int)Layers.TableTile;
@@ -35,11 +34,12 @@ public class WARControlDeployment : Manager<WARControlDeployment> {
 			// add a ship to play with
 			var ship = GameObject.Instantiate(
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
-			).GetComponent<WARUnit>() as WARGridObject;
-			WARControlBoard.AddObjectsToCell(0,new List<WARGridObject>{ship});
+			).GetComponent<WARUnit>() as WARUnit;
+			ship.owner = WARControlGameplay.CurrentPlayer;
+			WARControlBoard.AddObjectsToCell(id,new List<WARGridObject>{ship as WARGridObject});
 			
 			// place the ship over the cell
-			ship.transform.position = WARControlBoard.Grid.GetCell(id).transform.position;
+			//ship.transform.position = WARControlBoard.Grid.GetCell(id).transform.position;
 			
 			// we're done deploying
 			WARGame.SetMode(GAME_MODE.gameplay);

@@ -171,7 +171,6 @@ namespace WAR.Board {
 		// TODO, cleanup these functions, they are verbose..
 		
 		public override void addObjectsToCell(int cellId, List<WARGridObject> objects) {	
-			Debug.Log("adding object to cell");
 			// find the designated cell
 			WARActorCell cell = null;
 			foreach (var c in cells) {

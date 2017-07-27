@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
 using WAR;
 using WAR.UI;
 using WAR.Board;
+using WAR.Tools;
 
 namespace WAR.Game {
 	

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UniRx;
+using WAR.Tools;
 
 namespace WAR.UI {
 	public class UIInput : Manager<UIInput> {

@@ -9,6 +9,7 @@ using Sirenix.OdinInspector;
 using WAR.UI;
 using WAR.Game;
 using WAR.Pathfinder;
+using WAR.Tools;
 
 namespace WAR.Board {
 	public enum GRID_TYPE {
@@ -36,63 +37,45 @@ namespace WAR.Board {
 		[EnumToggleButtons]
 		public PATHFINDER_TYPE pathfinderType = PATHFINDER_TYPE.astar;
 		
-		public void Start() {
-			// initialize the board at the appropriate time
-			StartCoroutine(WaitForUIInput());
-		}
 		
-		IEnumerator WaitForUIInput() {
-			while (UIInput.Instance == null) yield return null;
-			Debug.Log("adding initBoard");
-			UIInput.Instance.onBoardInit += initBoard;
-		}
 		
-		public void initBoard (UIPlane plane) {
+		// return the a new table with cool stuffs
+		public static void CreateTable(UIPlane plane) {
 			// remove an existing table if there is one
-			if (table != null) {
-				GameObject.Destroy(table);
+			if (Instance.table != null) {
+				GameObject.Destroy(Instance.table);
 				// clear the selection
 				WARControlSelection.ClearSelection();
 			}
-			
-			// create a new object
-			table = createTable(plane);
-			
-			// we're done with the setup mode so move to the deployment mode
-			WARGame.SetMode(GAME_MODE.deployment);
-		}
-		
-		// return the a new table with cool stuffs
-		private GameObject createTable(UIPlane plane) {
 			var tableObject = new GameObject();
 			
 			// instantiate the appropriate pathfinder
-			switch (pathfinderType) {
+			switch (Instance.pathfinderType) {
 			// if we are making an astar
 			case PATHFINDER_TYPE.astar:
-				pathfinder = new WARPathAStar();	
+				Instance.pathfinder = new WARPathAStar();	
 				break;
 			}
 			
 			// spawn the appropriate grid for the 
-			switch(gridType) {
+			switch(Instance.gridType) {
 			// if we are building a hex grid
 			case GRID_TYPE.hex:
 				// fill our plane extent with hex slots
 				WARHexGrid hexGrid = tableObject.AddComponent<WARHexGrid>() as WARHexGrid;
-				hexGrid.initialize(plane, hexSlot, pathfinder);
-				grid = hexGrid;
+				hexGrid.initialize(plane, Instance.hexSlot, Instance.pathfinder);
+				Instance.grid = hexGrid;
 				break;
 			default:
-				print("could not instantiate cell with type " + gridType);
-				return null;
+				print("could not instantiate cell with type " + Instance.gridType);
+				return;
 			}
 				
 			// draw the grid
-			grid.createGrid();
+			Instance.grid.createGrid();
 			
 			// we're done here
-			return tableObject;
+			Instance.table = tableObject;
 		}
 		
 		// move objects to a cell on our grid

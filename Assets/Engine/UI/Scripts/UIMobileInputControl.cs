@@ -11,7 +11,6 @@ namespace WAR.UI {
 	{
 		public GameObject planePrefab;
 		private UnityARAnchorManager unityARAnchorManager;
-		private  bool isSetupPhase = false;
 		
 	    // Use this for initialization
 		void Start ()
@@ -19,8 +18,6 @@ namespace WAR.UI {
 	        #if !UNITY_EDITOR
 	        unityARAnchorManager = new UnityARAnchorManager ();
 	        UnityARUtility.InitializePlanePrefab (planePrefab);
-	        // enter the setup phase when we start
-	        isSetupPhase = true;
 	        #endif
 		}
 		
@@ -59,9 +56,6 @@ namespace WAR.UI {
 							UIInput.InitBoard(new UIPlane {center=go.transform.position,
 														   extent=go.transform.localScale * 10,
 														   rotation=go.transform.rotation});
-							
-	                        // and stop trying to place a table
-							isSetupPhase = false;
 							
 	                        // we are done looking for anchors so we will not attach a collideable game obect to our anchors
 							UnityARUtility.InitializePlanePrefab (new GameObject ());

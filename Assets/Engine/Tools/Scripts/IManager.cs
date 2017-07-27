@@ -1,4 +1,4 @@
-﻿namespace WAR
+﻿namespace WAR.Tools
 {
     public interface IManager
     {

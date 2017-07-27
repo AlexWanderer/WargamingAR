@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UniRx;
 
-namespace WAR
+namespace WAR.Tools
 {
     /// <summary>
     /// Base manager class that inforces a self-referencing singleton pattern.
@@ -9,12 +10,10 @@ namespace WAR
     /// <typeparam name="T">Self</typeparam>
     public abstract class Manager<T> : MonoBehaviour, IManager where T : Manager<T>
     {
-        private static T instance = null;
-
-        public static T Instance
-        {
-            get { return instance; }
-        }
+	    public static T Instance;
+	    
+	    // collect all of our disposables together so we can disable them as a group
+	    protected CompositeDisposable disposables = new CompositeDisposable();
 
         protected Manager() { }
 
@@ -23,7 +22,12 @@ namespace WAR
         /// </summary>
         public void Deserialize()
         {
-            instance = (T)this;
+	        Instance = (T)this;
         }
+	    // when the object is destroyed
+	    public void OnDestroy() {
+			// make sure to clean up any subscriptions
+		    disposables.Dispose();
+	    }
     }
 }
