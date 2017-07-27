@@ -17,6 +17,7 @@ namespace WAR.Game
 		shooting,
 		assault,
 		morale,
+		end,
 	}
 	
 	public enum GAME_MODE {
@@ -60,12 +61,8 @@ namespace WAR.Game
             get { return managers.ToArray(); }
         }
 		// singleton logic
-	    private static WARGame instance;
-	    public static WARGame Instance
-        {
-            get { return instance; }
-        }
-		
+		public static WARGame Instance;
+        
 		// reactive collection of the players we have spawned in the game
 		public ReactiveCollection<WARPlayer> players = new ReactiveCollection<WARPlayer>();
 		public static ReactiveCollection<WARPlayer> Players {
@@ -79,7 +76,7 @@ namespace WAR.Game
 	    public static ReactiveProperty<Epoch<GAME_PHASE>> Phase = new ReactiveProperty<Epoch<GAME_PHASE>>();
 		// the mode of the game we are in
 	    public static ReactiveProperty<Epoch<GAME_MODE>> Mode = new ReactiveProperty<Epoch<GAME_MODE>>();
-	    
+		
 	    public static void SetPhase(GAME_PHASE newPhase) {
 			// set the current game phase
 		    Phase.SetValueAndForceNotify(new Epoch<GAME_PHASE>(Phase.Value.current, newPhase));
@@ -97,13 +94,13 @@ namespace WAR.Game
 
         private void Start()
         {
-            if (instance != null) // Frankly, this should not happen. Someone made an error otherwise.
+	        if (Instance != null) // Frankly, this should not happen. Someone made an error otherwise.
             {
                 Destroy(gameObject);
                 return;
             }
             else
-                instance = this;
+	            Instance = this;
 
             Deserialize(this);
             DontDestroyOnLoad(gameObject);

@@ -13,7 +13,7 @@ namespace WAR.Game {
 			// when we set a mode and it's directed towards the gameplay mode
 			WARGame.Mode.Where(epoch => epoch.current == GAME_MODE.setup)
 				// call the init handler
-				.Subscribe(setup);
+				.Subscribe(setup).AddTo(disposables);
 			// initialize the board at the appropriate time
 			StartCoroutine(WaitForUIInput());
 			
@@ -21,7 +21,9 @@ namespace WAR.Game {
 		public void setup(Epoch<GAME_MODE> epoch){
 			// spawn and add the players to the WARGame
 			WARGame.Players.Add(new WARPlayer(1));
-			WARGame.Players.Add(new WARPlayer(2));			
+			WARGame.Players.Add(new WARPlayer(2));
+			// determine who goes first, player one for now?
+			WARControlGameplay.CurrentPlayer = 1;
 		}
 		
 		IEnumerator WaitForUIInput() {

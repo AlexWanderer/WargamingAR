@@ -85,6 +85,7 @@
      <None Include="Assets\Private\Plugins\ScriptInspector3\Editor\CodeSnippets\foreach.txt" />
      <None Include="Assets\Private\Zololgo\Sci-fi Hologram Shader\Shaders\SciFiHologramShader.shader" />
      <None Include="Assets\Private\Plugins\ScriptInspector3\Editor\CodeSnippets\interface.txt" />
+     <None Include="Assets\Private\CarbonConcept\Sci-Fi Loaders\Sprites\LightSpeed\Font\XoloniumFont48px.txt" />
      <None Include="Assets\Private\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
      <None Include="Assets\Private\Plugins\ProGrids\About\changelog.txt" />
      <None Include="Assets\Engine\UI\Shaders\YUVShader.shader" />

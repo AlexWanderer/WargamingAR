@@ -18,8 +18,6 @@ namespace WAR.UI {
 	        #if !UNITY_EDITOR
 	        unityARAnchorManager = new UnityARAnchorManager ();
 	        UnityARUtility.InitializePlanePrefab (planePrefab);
-	        // enter the setup phase when we start
-	        isSetupPhase = true;
 	        #endif
 		}
 		
