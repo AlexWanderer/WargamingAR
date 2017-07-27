@@ -34,8 +34,9 @@ public class WARControlDeployment : Manager<WARControlDeployment> {
 			// add a ship to play with
 			var ship = GameObject.Instantiate(
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
-			).GetComponent<WARUnit>() as WARGridObject;
-			WARControlBoard.AddObjectsToCell(id,new List<WARGridObject>{ship});
+			).GetComponent<WARUnit>() as WARUnit;
+			ship.owner = WARControlGameplay.CurrentPlayer;
+			WARControlBoard.AddObjectsToCell(id,new List<WARGridObject>{ship as WARGridObject});
 			
 			// place the ship over the cell
 			//ship.transform.position = WARControlBoard.Grid.GetCell(id).transform.position;

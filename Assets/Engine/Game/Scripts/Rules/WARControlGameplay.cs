@@ -7,7 +7,7 @@ using UnityEngine;
 using WAR.Board;
 using WAR.UI;
 using WAR.Tools;
-using WAR;
+using WAR.Units;
 
 namespace WAR.Game {
 	public class WARControlGameplay : Manager<WARControlGameplay> {
@@ -71,14 +71,16 @@ namespace WAR.Game {
 			if (Physics.Raycast(ray: Camera.main.ScreenPointToRay(pos), hitInfo: out hit, maxDistance: 5, layerMask: layerMask)) {
 				// the id of the cell we clicked on 
 				var id = hit.collider.GetComponent<WARActorCell>().id;
-				// add the current selected objects to a list
-				var list = new List<WARGridObject>();
-				foreach (var selected in WARControlSelection.Selection ) {
-					list.Add(selected);
-				}
+				// add the current selected objects to a list if the current player owns them
+				var list = WARControlSelection.Selection
+					.Where(obj => (obj as WARUnit).owner == WARControlGameplay.CurrentPlayer)
+					.ToList();
 				
-				// move the selection to the right cell
-				WARControlBoard.MoveObjectsToCell(id, list);	 			
+				// if we own any selected objects
+				if (list.Count > 0) {
+					// move the list of objects to the right cell
+					WARControlBoard.MoveObjectsToCell(id, list);	 			
+				}
 			}
 		}
 	
