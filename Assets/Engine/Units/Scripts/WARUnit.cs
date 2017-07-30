@@ -11,7 +11,7 @@ namespace WAR.Units {
 		
 		[SerializeField]
 		public int maxHealth;
-		private int currentHealth;
+		public int currentHealth;
 		
 		public void Start() {
 		// start off at max health
