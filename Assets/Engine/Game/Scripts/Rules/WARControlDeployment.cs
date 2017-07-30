@@ -11,7 +11,10 @@ using WAR.Tools;
 using WAR.Units;
 
 public class WARControlDeployment : Manager<WARControlDeployment> {
-
+	
+	// the number of models we've created
+	private int numDeployed = 1;
+	
 	void Start () {
 		// when clicking on a cell in the deployment phase
 		UIInput.TouchObservable.Where(_ => WARGame.Mode.Value.current == GAME_MODE.deployment)
@@ -35,14 +38,22 @@ public class WARControlDeployment : Manager<WARControlDeployment> {
 			var ship = GameObject.Instantiate(
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
 			).GetComponent<WARUnit>() as WARUnit;
-			ship.owner = WARControlGameplay.CurrentPlayer;
+			ship.owner = numDeployed;
 			WARControlBoard.AddObjectsToCell(id,new List<WARGridObject>{ship as WARGridObject});
-			
-			// place the ship over the cell
-			//ship.transform.position = WARControlBoard.Grid.GetCell(id).transform.position;
-			
-			// we're done deploying
-			WARGame.SetMode(GAME_MODE.gameplay);
+			// if we have deployed a model for both players
+			if (numDeployed == 2) {
+				StartCoroutine(DelayPhaseTransition());
+			}
+			// otherwise we need to generate a model for the second player
+			else {
+				numDeployed++;
+			}
 		}
+	}
+	
+	IEnumerator DelayPhaseTransition() {
+		yield return new WaitForSeconds(1);
+		// we're done deploying
+		WARGame.SetMode(GAME_MODE.gameplay);
 	}
 }

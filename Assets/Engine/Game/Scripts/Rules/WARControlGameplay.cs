@@ -27,7 +27,7 @@ namespace WAR.Game {
 			// when we set a mode and it's directed towards the gameplay mode
 			WARGame.Mode.Where(epoch => epoch.current == GAME_MODE.gameplay)
 						// call the init handler
-				.Subscribe(initMode).AddTo(disposables);
+				.Subscribe(setupMode).AddTo(disposables);
 			
 			// when the phase changes to movement and the last phase was morale, we have swapped turns
 			WARGame.Phase.Where(epoch => epoch.current == GAME_PHASE.end)
@@ -35,7 +35,9 @@ namespace WAR.Game {
 		}
 		
 		// called when we move to the gameplay mode
-		public void initMode(Epoch<GAME_MODE> modeEpoch) {
+		public void setupMode(Epoch<GAME_MODE> modeEpoch) {
+			// clear any selections that were made in deployment
+			WARControlSelection.ClearSelection();
 			// start in the movement phase
 			WARGame.SetPhase(GAME_PHASE.movement);
 
