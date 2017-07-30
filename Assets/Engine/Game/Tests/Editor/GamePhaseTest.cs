@@ -14,7 +14,7 @@ namespace WAR.Game.Tests {
 			var game = go.AddComponent<WARGame>() as WARGame;
 			WARGame.Instance = game;
 			// and out gameplay controller to step through the phases
-			var gameplay = go.AddComponent<WARControlGameplay>() as WARControlGameplay;
+			var gameplay = go.AddComponent<WARModeGameplay>() as WARModeGameplay;
 			
 			// the phase we are starting in
 			GAME_PHASE startPhase = GAME_PHASE.movement;
@@ -38,8 +38,8 @@ namespace WAR.Game.Tests {
 			var game = go.AddComponent<WARGame>() as WARGame;
 			WARGame.Instance = game;
 			// and out gameplay controller to step through the phases
-			var gameplay = new GameObject().AddComponent<WARControlGameplay>() as WARControlGameplay;
-			WARControlGameplay.Instance = gameplay;
+			var gameplay = new GameObject().AddComponent<WARModeGameplay>() as WARModeGameplay;
+			WARModeGameplay.Instance = gameplay;
 			gameplay.Start();
 			
 			// create players to add to our game
@@ -68,8 +68,8 @@ namespace WAR.Game.Tests {
 			var game = go.AddComponent<WARGame>() as WARGame;
 			WARGame.Instance = game;
 			// and out gameplay controller to step through the phases
-			var gameplay = new GameObject().AddComponent<WARControlGameplay>() as WARControlGameplay;
-			WARControlGameplay.Instance = gameplay;
+			var gameplay = new GameObject().AddComponent<WARModeGameplay>() as WARModeGameplay;
+			WARModeGameplay.Instance = gameplay;
 			gameplay.Start();
 		
 			// create players to add to our game
@@ -80,14 +80,14 @@ namespace WAR.Game.Tests {
 			int targetPlayer = 2;
 			
 			// set the current player
-			WARControlGameplay.CurrentPlayer = currentPlayer;
+			WARGame.CurrentPlayer = currentPlayer;
 			// set the phase to our start phase
 			WARGame.SetPhase(GAME_PHASE.morale);
 			// move to the next phase
 			gameplay.nextPhase();
 			
 			// make sure we got the desired phase transition
-			Assert.AreEqual(targetPlayer, WARControlGameplay.CurrentPlayer);
+			Assert.AreEqual(targetPlayer, WARGame.CurrentPlayer);
 			// destroy the gameplay controller to clean up subscriptions
 			gameplay.OnDestroy();
 		}
@@ -98,8 +98,8 @@ namespace WAR.Game.Tests {
 			var game = go.AddComponent<WARGame>() as WARGame;
 			WARGame.Instance = game;
 			// and out gameplay controller to step through the phases
-			var gameplay = new GameObject().AddComponent<WARControlGameplay>() as WARControlGameplay;
-			WARControlGameplay.Instance = gameplay;
+			var gameplay = new GameObject().AddComponent<WARModeGameplay>() as WARModeGameplay;
+			WARModeGameplay.Instance = gameplay;
 			gameplay.Start();
 			
 			// create players to add to our game
@@ -110,7 +110,7 @@ namespace WAR.Game.Tests {
 			int targetPlayer = 1;
 			
 			// set the current player
-			WARControlGameplay.CurrentPlayer = currentPlayer;
+			WARGame.CurrentPlayer = currentPlayer;
 			
 			// set the phase to our start phase
 			WARGame.SetPhase(GAME_PHASE.morale);
@@ -118,7 +118,7 @@ namespace WAR.Game.Tests {
 			gameplay.nextPhase();
 			
 			// make sure we got the desired phase transition
-			Assert.AreEqual(targetPlayer, WARControlGameplay.CurrentPlayer);
+			Assert.AreEqual(targetPlayer, WARGame.CurrentPlayer);
 			// destroy the gameplay controller to clean up subscriptions
 			gameplay.OnDestroy();
 		}

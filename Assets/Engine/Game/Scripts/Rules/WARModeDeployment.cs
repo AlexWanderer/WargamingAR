@@ -10,7 +10,7 @@ using WAR.Game;
 using WAR.Tools;
 using WAR.Units;
 
-public class WARControlDeployment : Manager<WARControlDeployment> {
+public class WARModeDeployment : Manager<WARModeDeployment> {
 	
 	// the number of models we've created
 	private int numDeployed = 1;

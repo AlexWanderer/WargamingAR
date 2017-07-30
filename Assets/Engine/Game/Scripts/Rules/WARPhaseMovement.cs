@@ -10,7 +10,7 @@ using WAR.Tools;
 using WAR.Units;
 
 namespace WAR.Game {
-	public class WARControlMovement : Manager<WARControlMovement> {
+	public class WARPhaseMovement : Manager<WARPhaseMovement> {
 		
 		public void Start () {
 
@@ -35,7 +35,7 @@ namespace WAR.Game {
 				var id = hit.collider.GetComponent<WARActorCell>().id;
 				// add the current selected objects to a list if the current player owns them
 				var list = WARControlSelection.Selection
-					.Where(obj => (obj as WARUnit).owner == WARControlGameplay.CurrentPlayer)
+					.Where(obj => (obj as WARUnit).owner == WARGame.CurrentPlayer)
 					.ToList();
 				
 				// if we own any selected objects

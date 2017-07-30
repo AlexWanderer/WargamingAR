@@ -10,18 +10,7 @@ using WAR.Tools;
 using WAR.Units;
 
 namespace WAR.Game {
-	public class WARControlGameplay : Manager<WARControlGameplay> {
-		// the current player in the game
-		public int currentPlayer;
-		public static int CurrentPlayer {
-			get {
-				// return the current player of the game
-				return Instance.currentPlayer;
-			}
-			set {
-				Instance.currentPlayer = value;
-			}
-		}
+	public class WARModeGameplay : Manager<WARModeGameplay> {
 		
 		public void Start () {
 			// when we set a mode and it's directed towards the gameplay mode
@@ -53,7 +42,7 @@ namespace WAR.Game {
 		// called when the game phase returns to movement from morale
 		public void nextTurn(Epoch<GAME_PHASE> phaseEpoch) {
 			// move to the next players turn, mod by numbers of players to cycle
-			Instance.currentPlayer = ((Instance.currentPlayer) % WARGame.Players.Count) + 1;
+			WARGame.CurrentPlayer = ((WARGame.CurrentPlayer) % WARGame.Players.Count) + 1;
 			nextPhase();
 		}
 	

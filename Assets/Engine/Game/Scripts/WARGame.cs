@@ -51,17 +51,6 @@ namespace WAR.Game
     [AddComponentMenu("")]
 	public sealed class WARGame : MonoBehaviour
 	{
-		// where the managers are stored in Assets/Resources/
-	    public const string PATH = "Managers/";
-		// the list of managers that we have spawned, found in PATH
-        private static List<IManager> managers = new List<IManager>();
-		// static reference to the set of managers we have spawned
-        public static IManager[] Managers
-        {
-            get { return managers.ToArray(); }
-        }
-		// singleton logic
-		public static WARGame Instance;
         
 		// reactive collection of the players we have spawned in the game
 		public ReactiveCollection<WARPlayer> players = new ReactiveCollection<WARPlayer>();
@@ -85,7 +74,19 @@ namespace WAR.Game
 			// set the current game mode
 		    Mode.SetValueAndForceNotify(new Epoch<GAME_MODE>(Mode.Value.current, newMode));
 	    }
-	    
+		
+		// the current player in the game
+		public int currentPlayer;
+		public static int CurrentPlayer {
+			get {
+				// return the current player of the game
+				return Instance.currentPlayer;
+			}
+			set {
+				Instance.currentPlayer = value;
+			}
+		}
+		
 	    private void Awake() {
 	    	// start off in the deployment mode
 	    	Mode.SetValueAndForceNotify(new Epoch<GAME_MODE>(GAME_MODE.setup));
@@ -105,6 +106,22 @@ namespace WAR.Game
             Deserialize(this);
             DontDestroyOnLoad(gameObject);
         }
+		
+		/// <summary>
+		/// Manager Implementation
+		/// </summary>
+		
+		// where the managers are stored in Assets/Resources/
+		public const string PATH = "Managers/";
+		// the list of managers that we have spawned, found in PATH
+		private static List<IManager> managers = new List<IManager>();
+		// static reference to the set of managers we have spawned
+		public static IManager[] Managers
+		{
+			get { return managers.ToArray(); }
+		}
+		// singleton logic
+		public static WARGame Instance;
 
         /// <summary>
         /// Used on editor only, to load a manager.
