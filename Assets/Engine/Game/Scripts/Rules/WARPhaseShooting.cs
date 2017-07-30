@@ -39,8 +39,11 @@ namespace WAR.Game {
 					.Where(obj => (obj as WARUnit).owner != WARGame.CurrentPlayer)
 					// only grab the units in the cell
 					.Where(obj => obj is WARUnit)
-					.Select(obj => (WARUnit)obj);
-				
+					// cast the final targets to a WARUnit
+					.Select(obj => (WARUnit)obj)
+					// do not target invulnerable objects
+					.Where(obj => obj.GetComponent<WARRuleInvulnerable>() == null);
+					
 				// damage each target 
 				foreach (var target in targets) {
 					// perform the right amount of damage according to the source
