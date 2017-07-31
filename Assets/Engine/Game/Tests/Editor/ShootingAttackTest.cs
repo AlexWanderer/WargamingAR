@@ -99,7 +99,20 @@ namespace WAR.Game.Tests {
 		}
 		
 		[Test]
-		public void AggregatesDefenses() {
+		public void AddsDefense() {
+			// a weapon to test with
+			var weap = new GameObject().AddComponent<TestModifier>() as TestModifier;
+			// the shooter
+			var shooter = GameObject.Instantiate(
+				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
+			);
+			// attach a few more instances of the modifier to the object
+			shooter.AddComponent<TestModifier>();
+			shooter.AddComponent<TestModifier>();
+			
+			// a place to store the result
+			var attack = new WARShootingAttack(shooter.GetComponent<WARUnit>() , weap);
+			
 			// the target
 			var target = GameObject.Instantiate(
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
@@ -109,10 +122,10 @@ namespace WAR.Game.Tests {
 			target.AddComponent<TestTargetModifier>();
 			
 			// a place to store the result
-			var final = new WARShootingAttack().computeDefense(target.GetComponent<WARUnit>());
+			var final = attack.computeFinalAttack(target.GetComponent<WARUnit>());
 			
 			// make sure the internal tracker has the right values
-			Assert.AreEqual(2, final.range);
+			Assert.AreEqual(5, final.range);
 		}
 	}
 }

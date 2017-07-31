@@ -70,15 +70,15 @@ namespace WAR.Game {
 			return result;
 		}
 		
-		public ShootingAttack computeDefense(WARUnit target) {
+		public ShootingAttack computeFinalAttack(WARUnit target) {
 			// the list of equipment that contributes to a shooting event
 			var equipment = target.GetComponents<MonoBehaviour>()
 				.Where(eq => (eq as IWARShootingTargetModifier) != null)
 				// cast them to the interface
 				.Select(item => item as IWARShootingTargetModifier);
 			
-			// start off with an empty profile (all armor is counted)
-			var result = new ShootingAttack();
+			// start off with the offensives profile
+			var result = computeAttack();
 			
 			// for each piece of equipment we care about
 			foreach (var item in equipment) {
