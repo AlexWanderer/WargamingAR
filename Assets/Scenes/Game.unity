@@ -108,6 +108,113 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &329814136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 329814138}
+  - component: {fileID: 329814137}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &329814137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329814136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6cce5620eab984da8bddacfdcbd7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: damage
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[WAR.Game.Damage, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: WAR.Game.Damage, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 0
+    - Name: damage
+      Entry: 3
+      Data: 4
+    - Name: armorPen
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: WAR.Game.Damage, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 1
+    - Name: damage
+      Entry: 3
+      Data: 1
+    - Name: armorPen
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: WAR.Game.Damage, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 3
+    - Name: damage
+      Entry: 3
+      Data: 2
+    - Name: armorPen
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!4 &329814138
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329814136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7065079, y: -0.6748628, z: -0.748147}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345148123
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8f7700fb5d38e4498fb680112ed25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPlayer: 0
 --- !u!4 &1740149603
 Transform:
   m_ObjectHideFlags: 0

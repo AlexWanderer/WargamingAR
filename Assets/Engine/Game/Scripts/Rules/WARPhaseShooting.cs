@@ -10,6 +10,7 @@ using WAR.Tools;
 using WAR.Units;
 
 namespace WAR.Game {
+	
 	public class WARPhaseShooting : Manager<WARPhaseShooting> {
 		
 		public void Start () {
