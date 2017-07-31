@@ -5,11 +5,10 @@ using UnityEngine;
 using WAR.Game;
 
 namespace WAR.Equipment {
-	public class WARRangedWeapon : WAREquipment, IWARShootingModifier {
+	public class WARRangedWeapon : WARWeapon, IWARShootingModifier {
 		// specific implementation of our shooting modifier
-		public void modifyShootingAttack(out ShootingAttack shootyMcScoots){
-			shootyMcScoots = new ShootingAttack();
-			return;
+		public ShootingAttack modifyShootingAttack(ShootingAttack shootyMcScoots){
+			return shootyMcScoots;
 		}
 	}
 }

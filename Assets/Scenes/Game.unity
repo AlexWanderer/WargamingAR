@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 329814138}
   - component: {fileID: 329814137}
+  - component: {fileID: 329814139}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -215,6 +216,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &329814139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329814136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a75b1fb3ef8663449abfcce3e85234e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: damage
+      Entry: 6
+      Data: 
 --- !u!1 &345148123
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +324,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1574231443}
+  - {fileID: 841058787}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -482,6 +506,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b61541d561177534082e5e5e52ff6eae, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &841058787 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 841058786}
 --- !u!1 &1318626309
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,11 +575,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!224 &1574231443 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 22400002, guid: b61541d561177534082e5e5e52ff6eae,
-    type: 2}
-  m_PrefabInternal: {fileID: 841058786}
 --- !u!1 &1740149601
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,9 @@ using WAR.Game;
 namespace WAR.Equipment {
 	public class WARWeapon : WAREquipment {
 		[SerializeField]
+		public int range;
+		
+		[SerializeField]
 		private List<Damage> damage;
 	}
 }

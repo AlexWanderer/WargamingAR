@@ -5,6 +5,6 @@ using UnityEngine;
 namespace WAR.Game {
 	public interface IWARShootingModifier {
 		// handler to modify a shooting attack 
-		void modifyShootingAttack(out ShootingAttack attack);
+		ShootingAttack modifyShootingAttack(ShootingAttack attack);
 	}
 }
