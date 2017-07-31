@@ -52,13 +52,26 @@ namespace WAR.Game {
 				// grab the weapon we are shooting with
 				var weap = source.GetComponent<WARRangedWeapon>();
 				
-				// compute the final attack profile for the weapon
-				var profile = new WARShootingAttack(source, weap).computeAttack();
+				// the basic attack profile of the shooter and weapon
+				var attack = new WARShootingAttack(source, weap);
 				
 				// damage each target 
-				foreach (var target in targets) {
-					// perform the right amount of damage according to the source
-					target.takeDamage(1);
+				foreach (var target in targets) {	
+					// compute the final attack profile for the weapon against the target
+					var profile = attack.computeFinalAttack(target);
+					
+					// the chance to hit is related to the weapon's accuracy
+					var chanceToHit = 100 / (4 - profile.accuracy + profile.weaponSkill);
+					
+					// if we generate a random number from 0 to 100 below the chance
+					if (Random.value * 100 < chanceToHit) {
+						// perform the right amount of damage according to the source
+						target.takeDamage(profile.damage);
+					}
+					// otherwise we missed a hit
+					else { 
+						print("missing hit!");
+					}
 				}
 			}
 		}

@@ -11,7 +11,7 @@ using WAR.Equipment;
 namespace WAR.Game.Tests {
 	
 	public class TestModifier : MonoBehaviour, IWARShootingModifier {
-		public ShootingAttack modifyShootingAttack(ShootingAttack attack) {
+		public ShootingAttack modifyShootingAttack(WARUnit source, ShootingAttack attack) {
 			var newAttack = new ShootingAttack();
 			
 			// set the range to something we know
@@ -22,7 +22,7 @@ namespace WAR.Game.Tests {
 	}
 	
 	public class TestTargetModifier : MonoBehaviour, IWARShootingTargetModifier {
-		public ShootingAttack modifyShootingAttackTarget(ShootingAttack defense) {
+		public ShootingAttack modifyShootingAttackTarget(WARUnit target, ShootingAttack defense) {
 			var newAttack = new ShootingAttack();
 			
 			// set the range to something we know
