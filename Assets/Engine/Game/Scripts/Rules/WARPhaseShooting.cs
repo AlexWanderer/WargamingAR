@@ -8,6 +8,7 @@ using WAR.Board;
 using WAR.UI;
 using WAR.Tools;
 using WAR.Units;
+using WAR.Equipment;
 
 namespace WAR.Game {
 	
@@ -35,6 +36,9 @@ namespace WAR.Game {
 				// the id of the cell we clicked on 
 				var id = hit.collider.GetComponent<WARActorCell>().id;
 				
+				// the object we current have selected
+				var source = WARControlSelection.Selection[0] as WARUnit;
+				
 				// the objects in the cell that the current player does not own
 				var targets = WARControlBoard.Grid.GetCell(id).objects
 					.Where(obj => (obj as WARUnit).owner != WARGame.CurrentPlayer)
@@ -44,7 +48,13 @@ namespace WAR.Game {
 					.Select(obj => (WARUnit)obj)
 					// do not target invulnerable objects
 					.Where(obj => obj.GetComponent<WARRuleInvulnerable>() == null);
-					
+				
+				// grab the weapon we are shooting with
+				var weap = source.GetComponent<WARRangedWeapon>();
+				
+				// compute the final attack profile for the weapon
+				var profile = new WARShootingAttack(source, weap).computeAttack();
+				
 				// damage each target 
 				foreach (var target in targets) {
 					// perform the right amount of damage according to the source

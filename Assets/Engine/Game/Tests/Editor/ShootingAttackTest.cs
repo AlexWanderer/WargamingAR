@@ -21,6 +21,17 @@ namespace WAR.Game.Tests {
 		}
 	}
 	
+	public class TestTargetModifier : MonoBehaviour, IWARShootingTargetModifier {
+		public ShootingAttack modifyShootingAttackTarget(ShootingAttack defense) {
+			var newAttack = new ShootingAttack();
+			
+			// set the range to something we know
+			newAttack.range = 1 + defense.range;
+			
+			return newAttack;
+		}
+	}
+	
 	public class ShootingAttackTest {
 		
 		[Test]
@@ -85,6 +96,23 @@ namespace WAR.Game.Tests {
 			
 			// make sure the internal tracker has the right values
 			Assert.AreEqual(3, final.range);
+		}
+		
+		[Test]
+		public void AggregatesDefenses() {
+			// the target
+			var target = GameObject.Instantiate(
+				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
+			);
+			// attach a piece of shooting armor to the target
+			target.AddComponent<TestTargetModifier>();
+			target.AddComponent<TestTargetModifier>();
+			
+			// a place to store the result
+			var final = new WARShootingAttack().computeDefense(target.GetComponent<WARUnit>());
+			
+			// make sure the internal tracker has the right values
+			Assert.AreEqual(2, final.range);
 		}
 	}
 }

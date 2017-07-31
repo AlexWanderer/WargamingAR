@@ -43,6 +43,11 @@ namespace WAR.Game {
 			this.attack = fired.modifyShootingAttack(new ShootingAttack());
 		}
 		
+		public WARShootingAttack() {
+			this.shooter = null;
+			this.attack = new ShootingAttack();
+		}
+		
 		public ShootingAttack computeAttack() {
 			// the list of equipment that contributes to a shooting event
 			var equipment = shooter.GetComponents<MonoBehaviour>()
@@ -59,6 +64,26 @@ namespace WAR.Game {
 			foreach (var item in equipment) {
 				// apply the modifier
 				result = item.modifyShootingAttack(result);
+			}
+			
+			// return the final attack
+			return result;
+		}
+		
+		public ShootingAttack computeDefense(WARUnit target) {
+			// the list of equipment that contributes to a shooting event
+			var equipment = target.GetComponents<MonoBehaviour>()
+				.Where(eq => (eq as IWARShootingTargetModifier) != null)
+				// cast them to the interface
+				.Select(item => item as IWARShootingTargetModifier);
+			
+			// start off with an empty profile (all armor is counted)
+			var result = new ShootingAttack();
+			
+			// for each piece of equipment we care about
+			foreach (var item in equipment) {
+				// apply the modifier
+				result = item.modifyShootingAttackTarget(result);
 			}
 			
 			// return the final attack
