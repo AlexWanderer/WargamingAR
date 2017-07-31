@@ -30,6 +30,7 @@ namespace WAR.Game {
 		public int accuracy;
 		public int attacks;
 		public bool requireLOS;
+		public int weaponSkill;
 	}
 	
 	public class WARShootingAttack {
