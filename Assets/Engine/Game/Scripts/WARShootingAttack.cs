@@ -17,15 +17,22 @@ namespace WAR.Game {
 	}
 	
 	public struct Damage {
-		public DamageType type;
 		[Range(1,4)]
-		public int damage;
+		public int strength;
 		[Range(1,4)]
 		public int armorPen;
 	}
+	 
+	public struct DamageProfile {
+		public Damage emp;
+		public Damage thermal;
+		public Damage phaser;
+		public Damage kinetic;
+		public Damage special;
+	}
 	
 	public struct ShootingAttack {
-		public List<Damage> damage;		
+		public DamageProfile damage;		
 		public int range;
 		public int accuracy;
 		public int attacks;
