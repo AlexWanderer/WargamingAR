@@ -31,6 +31,7 @@ namespace WAR.Game {
 		public int attacks;
 		public bool requireLOS;
 		public int weaponSkill;
+		public WeaponType weaponType;
 		
 		public DamageProfile getAttack() {
 			return damage;
@@ -55,7 +56,7 @@ namespace WAR.Game {
 		public WARShootingAttack(WARUnit shooter, IWARShootingModifier fired) {
 			this.shooter = shooter;
 			// apply the initial profile 
-			this.attack = fired.modifyShootingAttack(new ShootingAttack());
+			this.attack = fired == null ? new ShootingAttack() : fired.modifyShootingAttack(new ShootingAttack());
 		}
 		
 		public WARShootingAttack() {

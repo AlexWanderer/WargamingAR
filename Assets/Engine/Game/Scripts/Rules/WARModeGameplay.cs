@@ -28,7 +28,7 @@ namespace WAR.Game {
 			// clear any selections that were made in deployment
 			WARControlSelection.ClearSelection();
 			// start in the movement phase
-			WARGame.SetPhase(GAME_PHASE.movement);
+			WARGame.SetPhase(GAME_PHASE.shooting);
 
 		}
 		public void nextPhase() {

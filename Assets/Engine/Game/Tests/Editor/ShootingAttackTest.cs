@@ -10,7 +10,7 @@ using WAR.Equipment;
 
 namespace WAR.Game.Tests {
 	
-	public class TestModifier : MonoBehaviour, IWARShootingModifier {
+	public class TestModifier : WARWeapon, IWARShootingModifier {
 		public ShootingAttack modifyShootingAttack(ShootingAttack attack) {
 			var newAttack = new ShootingAttack();
 			
@@ -35,19 +35,38 @@ namespace WAR.Game.Tests {
 	public class ShootingAttackTest {
 		
 		[Test]
-		public void InitializesWithWeapon() {
+		public void HandlesNullWeapon() {
 			// a weapon to test with
 			var weap = new GameObject().AddComponent<TestModifier>() as TestModifier;
+			// the shooter
+			var shooter = GameObject.Instantiate(
+				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
+			);
+			
+			// a place to store the result
+			var attack = new WARShootingAttack(shooter.GetComponent<WARUnit>() , null);
+			
+			// make sure we got a new attack profile
+			Assert.AreEqual(0, attack.attack.getAttack().emp.strength);
+		}
+		
+		[Test]
+		public void InitializesWithWeapon() {
+			// a weapon to test with
+			var weap = new GameObject().AddComponent<TestModifier>() as WARWeapon;
+			weap.type = WeaponType.melee;
 			// the shooter
 			var shooter = GameObject.Instantiate(
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
 			).GetComponent<WARUnit>() as WARUnit;;
 			
 			// a place to store the result
-			var attack = new WARShootingAttack(shooter, weap);
+			var attack = new WARShootingAttack(shooter, weap as TestModifier);
 			
 			// make sure the internal tracker has the right values
 			Assert.AreEqual(1, attack.attack.range);
+			// and we assigned the right weapong type
+			Assert.AreEqual(WeaponType.melee, attack.attack.weaponType);
 		} 
 		
 		[Test]
@@ -98,7 +117,7 @@ namespace WAR.Game.Tests {
 			Assert.AreEqual(3, final.range);
 		}
 		
-		[Test]
+		[Test] 
 		public void AddsDefense() {
 			// a weapon to test with
 			var weap = new GameObject().AddComponent<TestModifier>() as TestModifier;
