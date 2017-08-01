@@ -23,7 +23,6 @@ namespace WAR.Units {
 		}
 		 
 		public void takeDamage(IWARAttack attack) {
-			print("taking damage");
 			// go over every possible damage type
 			foreach (DamageType type in Enum.GetValues(typeof(DamageType))) {
 				// the damage associated with this type
