@@ -45,9 +45,7 @@ namespace WAR.Game {
 					// only grab the units in the cell
 					.Where(obj => obj is WARUnit)
 					// cast the final targets to a WARUnit
-					.Select(obj => (WARUnit)obj)
-					// do not target invulnerable objects
-					.Where(obj => obj.GetComponent<WARRuleInvulnerable>() == null);
+					.Select(obj => (WARUnit)obj);
 				
 				// grab the weapon we are shooting with
 				var weap = source.GetComponent<WARRangedWeapon>();
