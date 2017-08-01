@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 using System;
+using System.Linq;
 
 using WAR.Board;
 using WAR.Game;
@@ -20,14 +21,17 @@ namespace WAR.Units {
 		// start off at max health
 			currentHealth = maxHealth;
 		}
-		
-		public void takeDamage(DamageProfile damage) {
+		 
+		public void takeDamage(IWARAttack attack) {
 			// go over every possible damage type
-			foreach (DamageType foo in Enum.GetValues(typeof(DamageType))) {
+			foreach (DamageType type in Enum.GetValues(typeof(DamageType))) {
 				// the damage associated with this type
-				var dmg = damage.GetType().GetField(foo.ToString()).GetValue(damage);
+				var damage = attack.getAttack().getType(type);
+				// the armor associated with the type
+				var armor = attack.getArmor().getType(type);
+				
 				// take the damage associated with the type
-				currentHealth -= ((Damage)dmg).strength;
+				currentHealth -= damage.strength - (armor.strength - damage.armorPen);
 			}
 		}
 	}

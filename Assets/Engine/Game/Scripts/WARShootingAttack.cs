@@ -22,22 +22,28 @@ namespace WAR.Game {
 		[Range(1,4)]
 		public int armorPen;
 	}
-	 
-	public struct DamageProfile {
-		public Damage emp;
-		public Damage thermal;
-		public Damage phaser;
-		public Damage kinetic;
-		public Damage special;
-	}
 	
-	public struct ShootingAttack {
-		public DamageProfile damage;		
+	public class ShootingAttack : IWARAttack {
+		public DamageProfile damage;	
+		public DamageProfile armor;
 		public int range;
 		public int accuracy;
 		public int attacks;
 		public bool requireLOS;
 		public int weaponSkill;
+		
+		public DamageProfile getAttack() {
+			return damage;
+		}
+		
+		public DamageProfile getArmor() {
+			return armor;
+		}
+		
+		public ShootingAttack() {
+			damage = new DamageProfile();
+			armor = new DamageProfile();
+		}
 	}
 	
 	public class WARShootingAttack {
@@ -48,11 +54,13 @@ namespace WAR.Game {
 		// make the initial modification with the weapon that was fired
 		public WARShootingAttack(WARUnit shooter, IWARShootingModifier fired) {
 			this.shooter = shooter;
+			// apply the initial profile 
 			this.attack = fired.modifyShootingAttack(new ShootingAttack());
 		}
 		
 		public WARShootingAttack() {
 			this.shooter = null;
+			// create an empty shooting attack
 			this.attack = new ShootingAttack();
 		}
 		
@@ -72,7 +80,7 @@ namespace WAR.Game {
 			foreach (var item in equipment) {
 				// apply the modifier
 				result = item.modifyShootingAttack(result);
-			}
+			} 
 			
 			// return the final attack
 			return result;

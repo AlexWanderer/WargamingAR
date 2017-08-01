@@ -66,7 +66,7 @@ namespace WAR.Game {
 					// if we generate a random number from 0 to 100 below the chance
 					if (Random.value * 100 < chanceToHit) {
 						// perform the right amount of damage according to the source
-						target.takeDamage(profile.damage);
+						target.takeDamage(profile);
 					}
 					// otherwise we missed a hit
 					else { 
