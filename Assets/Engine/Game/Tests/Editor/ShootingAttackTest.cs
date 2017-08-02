@@ -10,7 +10,20 @@ using WAR.Equipment;
 
 namespace WAR.Game.Tests {
 	
-	public class TestModifier : WARWeapon, IWARShootingModifier {
+	public class TestWeapon : WARWeapon, IWARShootingModifier {
+		public ShootingAttack modifyShootingAttack(ShootingAttack attack) {
+			var newAttack = new ShootingAttack();
+			
+			// set the range to something we know
+			newAttack.range = 1 + attack.range;
+			newAttack.weaponType = WeaponType.melee;
+			
+			
+			return newAttack;
+		}
+	}
+	
+	public class TestModifier : MonoBehaviour, IWARShootingModifier {
 		public ShootingAttack modifyShootingAttack(ShootingAttack attack) {
 			var newAttack = new ShootingAttack();
 			
@@ -53,7 +66,7 @@ namespace WAR.Game.Tests {
 		[Test]
 		public void InitializesWithWeapon() {
 			// a weapon to test with
-			var weap = new GameObject().AddComponent<TestModifier>() as WARWeapon;
+			var weap = new GameObject().AddComponent<TestWeapon>() as WARWeapon;
 			weap.type = WeaponType.melee;
 			// the shooter
 			var shooter = GameObject.Instantiate(
@@ -61,7 +74,7 @@ namespace WAR.Game.Tests {
 			).GetComponent<WARUnit>() as WARUnit;;
 			
 			// a place to store the result
-			var attack = new WARShootingAttack(shooter, weap as TestModifier);
+			var attack = new WARShootingAttack(shooter, weap as TestWeapon);
 			
 			// make sure the internal tracker has the right values
 			Assert.AreEqual(1, attack.attack.range);
@@ -101,11 +114,8 @@ namespace WAR.Game.Tests {
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
 			);
 			// attach a few more instances of the modifier to the object
-			shooter.AddComponent<TestModifier>();
-			shooter.AddComponent<TestModifier>();
-			// attach a weapon to the object that modifies the range which will be ignored
-			var extraWep = shooter.AddComponent<WARRangedWeapon>() as WARRangedWeapon;
-			extraWep.range = 1;
+			shooter.AddComponent<TestWeapon>();
+			shooter.AddComponent<TestWeapon>();
 			
 			// a place to store the result
 			var attack = new WARShootingAttack(shooter.GetComponent<WARUnit>() , weap);
@@ -114,7 +124,7 @@ namespace WAR.Game.Tests {
 			var final = attack.computeAttack();
 			
 			// make sure the internal tracker has the right values
-			Assert.AreEqual(3, final.range);
+			Assert.AreEqual(1, final.range); 
 		}
 		
 		[Test] 
@@ -125,9 +135,6 @@ namespace WAR.Game.Tests {
 			var shooter = GameObject.Instantiate(
 				WARToolUnitFinder.GetByArmyUnitName("Shmoogaloo","ShmooTroop")
 			);
-			// attach a few more instances of the modifier to the object
-			shooter.AddComponent<TestModifier>();
-			shooter.AddComponent<TestModifier>();
 			
 			// a place to store the result
 			var attack = new WARShootingAttack(shooter.GetComponent<WARUnit>() , weap);
@@ -144,7 +151,7 @@ namespace WAR.Game.Tests {
 			var final = attack.computeFinalAttack(target.GetComponent<WARUnit>());
 			
 			// make sure the internal tracker has the right values
-			Assert.AreEqual(5, final.range);
+			Assert.AreEqual(3, final.range);
 		}
 	}
 }
