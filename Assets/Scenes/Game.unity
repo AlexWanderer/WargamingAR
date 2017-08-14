@@ -155,12 +155,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: WAR.Game.Damage, Assembly-CSharp
-    - Name: type
+    - Name: strength
       Entry: 3
       Data: 0
-    - Name: damage
-      Entry: 3
-      Data: 4
     - Name: armorPen
       Entry: 3
       Data: 3
@@ -170,12 +167,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: WAR.Game.Damage, Assembly-CSharp
-    - Name: type
+    - Name: strength
       Entry: 3
-      Data: 1
-    - Name: damage
-      Entry: 3
-      Data: 1
+      Data: 0
     - Name: armorPen
       Entry: 3
       Data: 1
@@ -185,12 +179,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: WAR.Game.Damage, Assembly-CSharp
-    - Name: type
+    - Name: strength
       Entry: 3
-      Data: 3
-    - Name: damage
-      Entry: 3
-      Data: 2
+      Data: 0
     - Name: armorPen
       Entry: 3
       Data: 1
@@ -203,6 +194,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  range: 0
+  type: 0
 --- !u!4 &329814138
 Transform:
   m_ObjectHideFlags: 0
@@ -239,6 +232,8 @@ MonoBehaviour:
     - Name: damage
       Entry: 6
       Data: 
+  range: 0
+  type: 0
 --- !u!1 &345148123
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +319,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 841058787}
+  - {fileID: 1906172977}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -506,10 +501,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b61541d561177534082e5e5e52ff6eae, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &841058787 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 841058786}
 --- !u!1 &1318626309
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,3 +646,8 @@ MonoBehaviour:
     showTimeStamp: 1
     skin: {fileID: 0}
     font: {fileID: 12800000, guid: ad6ef108a66aa7a439bf72424a56b8d3, type: 3}
+--- !u!224 &1906172977 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22400002, guid: b61541d561177534082e5e5e52ff6eae,
+    type: 2}
+  m_PrefabInternal: {fileID: 841058786}
