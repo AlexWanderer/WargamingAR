@@ -576,6 +576,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7177bfe49db8c7345a43d639deb6f458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.5
+  owner: 0
+  maxHealth: 0
+  currentHealth: 0
+  maxFuel: 2
+  currentFuel: 0
+  burnRate: 0
 --- !u!198 &198053891765983028
 ParticleSystem:
   m_ObjectHideFlags: 1
